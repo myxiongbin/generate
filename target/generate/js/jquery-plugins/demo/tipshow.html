@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>tipshow消息显示组件</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/jform.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/tipshow.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/winmess.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-tipshow.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-tipmess.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winmess.js"></script>
+	<script type="text/javascript" src="../jquery-workbus-plugin.js"></script>
+	
+	<script type="text/javascript">
+		$(function() {
+			// 消息显示
+			$("#tipshow").tipshow({
+				message: {
+					text: "您有\"<span id=\"rows\">0</span>\"条待办任务需要处理",	// ID作为tipmess的初始化对象
+					msg: "待办任务",
+					winpWidth: 500,
+					winpHeight: 300,
+					handler: function() {
+						alert("待办任务");
+					}
+				},
+				buttons: [{
+					iconCls: "icon-user",
+					text: "阿三，你好！",
+					msg: "用户信息",
+					position: "before",
+					handler: function() {
+						alert("user");
+					}
+				},{
+					iconCls: "icon-world",
+					text: "地图",
+					handler: function() {
+						alert("map");
+					}
+				},{
+					type: "line"
+				},{
+					iconCls: "icon-cancel",
+					text: "退出",
+					msg: "退出系统",
+					handler: function() {
+						alert("exit");
+					}
+				}]
+			});
+			// 消息提示
+			$("#rows").tipmess({
+				actors: [{
+					id: "1001",
+					url: "tipmess_data.json",
+					queryPara: {},
+					time: 2000
+				}]
+			});
+		});
+		function setCenterText() {
+			$("#tipshow").tipshow("setCenterText", "\"在这里可以重新设置消息显示的内容\"");
+		};
+		function addLine() {
+			$("#tipshow").tipshow("add", {
+				type: "line",
+				position: "after"	// default
+			});
+		};
+		function addButton() {
+			$("#tipshow").tipshow("add", {
+				iconCls: "icon-save",
+				text: "菜单选项",
+				type: "radio",	// default
+				msg: "menu item",
+				handler: function() {
+					alert("click menu");
+				}
+			});
+		};
+	</script>
+	<style type="text/css">
+		.bn {filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr=#550000FF, endColorstr=#550000FF, GradientType=0);}
+		.bc {filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr=#550000FF, endColorstr=#00FFFFFF, GradientType=0);}
+	</style>
+</head>
+<body class="easyui-layout" fit="true">
+	<div region="north" class="bn" border="false" style="height: 70px; overflow: hidden;">
+		<div id="tipshow" style="height: 54px; overflow: hidden; position: absolute; right: 0; bottom: 0; margin-right: 5px;"></div>
+	</div>
+	<div region="center" class="bc" border="false" style="padding: 10px;">
+		<a href="javascript:setCenterText();" class="easyui-linkbutton" type="rectangle">setCenterText</a>
+		<a href="javascript:addLine();" class="easyui-linkbutton" type="rectangle">addLine</a>
+		<a href="javascript:addButton();" class="easyui-linkbutton" type="rectangle">addButton</a>
+	</div>
+</body>
+</html>
+
+

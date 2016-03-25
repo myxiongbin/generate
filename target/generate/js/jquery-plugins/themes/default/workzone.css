@@ -1,0 +1,83 @@
+/* 工作区选项卡 */
+.indexTab {
+	cursor: default;
+	height: 25px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.indexTab li {
+	height: 25px;
+	line-height: 25px;
+	float: left;
+}
+
+.tabItemSide {
+	width: 29px;
+	background: url(images/workzone/tab_2_3.png) no-repeat;
+}
+.tabItemLeft {
+	width: 27px;
+	background: url(images/workzone/tab_2_4.png) no-repeat;
+}
+.tabItemRight {
+	width: 29px;	
+	background: url(images/workzone/tab_1_3.png) no-repeat;
+}
+.tabItemLast {
+	width: 32px;
+	background: url(images/workzone/tab_3_2.png) no-repeat;
+}
+.tabItemLastClick {
+	width: 29px;
+	background: url(images/workzone/tab_3_1.png) no-repeat;
+}
+
+.firstLi { background: url(images/workzone/tab_2_1.png) no-repeat; width: 10px;}
+.firstLiClick { background: url(images/workzone/tab_1_1.png) no-repeat; width: 9px;}
+.lastLi { background: url(images/workzone/tab_3_2.png) no-repeat; width: 32px;}
+.closeLi { background: url(images/workzone/tab_2_2.png) repeat-x;}
+
+.picMouseOver, .picMouseOut {
+	float: left;
+	width: 17px;
+	height: 25px;
+	line-height: 25px;
+	cursor: pointer;
+}
+.picMouseOver {
+	background: url(images/workzone/ico_14.png) center no-repeat;
+}
+.picMouseOut {
+	background: url(images/workzone/ico_15.png) center no-repeat;
+}
+.wz-icon {
+	display: none;
+	float: left;
+	width: 16px;
+	height: 100%;
+	background-position: center!important;
+}
+
+.tabItem {
+	background: url(images/workzone/tab_2_2.png) repeat-x;
+}
+.tabItem .con {
+	color: #dfeef7;
+	padding: 0 5px;
+	float: left;
+	cursor: pointer;
+	height: 25px;
+	font: 12px/25px '宋体'!important; /*中英文对齐*/
+}
+.tabItemClick {
+	background: url(images/workzone/tab_1_2.png) repeat-x;
+}
+.tabItemClick .con {
+	font-weight: bold!important;
+	color:#0b74c5;
+}

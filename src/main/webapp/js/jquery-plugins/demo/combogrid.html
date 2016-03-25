@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ComboGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	<script>
+	var json = {"total":239,"rows":[{"code":"001","name":"Name 1","addr":"Address 11","col4":"col4 data"},
+	                            	{"code":"002","name":"Name 2","addr":"Address 13","col4":"col4 data"},
+	                            	{"code":"003","name":"Name 3","addr":"Address 87","col4":"col4 data"},
+	                            	{"code":"004","name":"Name 4","addr":"Address 63","col4":"col4 data"},
+	                            	{"code":"005","name":"Name 5","addr":"Address 45","col4":"col4 data"},
+	                            	{"code":"006","name":"Name 6","addr":"Address 16","col4":"col4 data"},
+	                            	{"code":"007","name":"Name 7","addr":"Address 27","col4":"col4 data"},
+	                            	{"code":"008","name":"Name 8","addr":"Address 81","col4":"col4 data"},
+	                            	{"code":"009","name":"Name 9","addr":"Address 69","col4":"col4 data"},
+	                            	{"code":"010","name":"Name 10","addr":"Address 78","col4":"col4 data"}]};
+		$(function(){
+			$('#cc').combogrid({
+				panelWidth:600,
+				value:'006',
+				idField:'code',
+				textField:'name',
+				pagination:true,
+				//url:'datagrid_data.json',
+				multiple:true,
+				columns:[[
+					{field:'code',title:'Code',width:60},
+					{field:'name',title:'Name',width:100},
+					{field:'addr',title:'Address',width:120},
+					{field:'col4',title:'Col41',width:100}
+				]],
+				onHidePanel:function(){
+					alert(1);
+				}
+			});
+
+
+			$('#cc').combogrid('grid').datagrid('loadData',json);
+		});
+		function reload(){
+			$('#cc').combogrid('grid').datagrid('reload');
+		}
+		function setValue(){
+			$('#cc').combogrid('setValue', '002');
+		}
+		function getValue(){
+			var val = $('#cc').combogrid('getValue');
+			alert(val);
+		}
+		function disable(){
+			$('#cc').combogrid('disable');
+		}
+		function enable(){
+			$('#cc').combogrid('enable');
+		}
+	</script>
+</head>
+<body>
+	<h2>ComboGrid</h2>
+	<div class="demo-info">
+		<div class="demo-tip icon-tip"></div>
+		<div>Click the right arrow button to show the datagrid.</div>
+	</div>
+	
+	<div style="margin:10px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="reload()">Reload</a>
+		<a href="#" class="easyui-linkbutton" onclick="setValue()">SetValue</a>
+		<a href="#" class="easyui-linkbutton" onclick="getValue()">GetValue</a>
+		<a href="#" class="easyui-linkbutton" onclick="disable()">Disable</a>
+		<a href="#" class="easyui-linkbutton" onclick="enable()">Enable</a>
+	</div>
+	<select id="cc" name="dept" style="width:250px;"></select>
+</body>
+</html>
+
+

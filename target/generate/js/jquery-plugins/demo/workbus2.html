@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Workzone JQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/workzone.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../common/json2.js"></script>
+
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-comp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-workzone.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winmess.js"></script>
+	<script type="text/javascript" src="../jquery-workbus-plugin.js"></script>
+	<script>
+		$(function() {
+			$('#tabDiv').workzone({
+				iframeWorkzoneId: 'iframeDiv',
+				nodes: [
+			        {title: 'workbus3-1', url: 'workbus3-1.html', menuId: 1001},
+			        {title: 'workbus3-2', url: 'workbus3-2.html', menuId: 1002}
+				]
+				//,onClickInvokeIframeMethod: 'test'
+			});
+
+		});
+		function methodSupplyToTop(){
+			$.workbus.methodSupplyToTop('supplytest');
+		}
+		function supplytest(){
+			alert('supplytest2');
+		}
+		function invokeRegisterMethod(){
+			$.workbus.invokeRegisterMethod(1,'supplytest');
+		}
+		
+		function test() {
+			$.workbus.getTop().workbus_test();
+		}
+		function test2() {
+			$.workbus.getWorkzone().workbus_test();
+		}
+		function workbus_test() {
+			alert('workbus2_test');
+		}
+		function openWinp(){
+			$.workbus.openWinp({id:'testDialog', title:'测试', url:'workbus3-2.html'});
+		}
+	</script>
+</head>
+<body style="padding: 0; margin: 0;" class="easyui-layout" split="true">
+	<div id="eeee" region="east" border="true" style="width: 200px; overflow: hidden; background: #eee;">
+		<a href="javascript:test()" class="easyui-linkbutton">getTop</a>
+		<a href="javascript:test2()" class="easyui-linkbutton">getWokrzone</a>
+		<a href="javascript:invokeRegisterMethod()" class="easyui-linkbutton">invokeRegisterMethod</a>
+		<a href="javascript:methodSupplyToTop()" class="easyui-linkbutton">methodSupplyToTop</a>
+		<a href="javascript:openWinp()" class="easyui-linkbutton">openWinp</a>
+	</div>
+	<div id="tabDiv" region="north" border="true" style="height: 27px; overflow: hidden; background: #eee;">
+		
+	</div>
+	<div id="iframeDiv" region="center" border="true" style="overflow: hidden;">
+		
+	</div>
+</body>
+</html>
+
+

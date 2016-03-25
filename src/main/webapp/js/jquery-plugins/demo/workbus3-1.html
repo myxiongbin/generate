@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Workzone JQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/workzone.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../common/json2.js"></script>
+
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-comp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-workzone.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winmess.js"></script>
+	<script type="text/javascript" src="../jquery-workbus-plugin.js"></script>
+	<script>
+		$(function() {
+
+		});
+		function methodSupplyToWorkzone_supplytest(){
+			$.workbus.methodSupplyToWorkzone('supplytest');
+		}
+		function methodSupplyToWorkzone_supplytest3_1(){
+			$.workbus.methodSupplyToWorkzone('supplytest3_1');
+		}
+		function supplytest3_1(){
+			if(arguments.length!=0){
+				alert(arguments[0].name);
+			}
+			alert('3-1:supplytest3_1:');
+		}
+		function supplytest(){
+			if(arguments.length!=0){
+				alert(arguments[0].name);
+			}
+			alert('3-1:supplytest:');
+		}
+		function invokeRegisterMethod_supplytest(){
+			$.workbus.invokeRegisterMethodFromWorkzone('supplytest');
+		}
+		function invokeRegisterMethod_supplytest3_1(){
+			$.workbus.invokeRegisterMethodFromWorkzone('supplytest3_1',{name:'我是从3-1来的'});
+		}
+		
+		function invokeCallBackMethodFromPreIframe_callbackTo3_2_supplytest(){
+			$.workbus.invokeCallBackMethodFromPreIframe('supplytest',{name:'我是从3-1来的'});
+		}
+		function invokeCallBackMethodFromPreIframeDefault_callbackTo3_2_supplytest(){
+			$.workbus.invokeCallBackMethodFromPreIframeDefault({name:'我是从3-1来的'});
+			$.workbus.invokeCallBackMethodFromPreIframeDefault();
+		}
+		function invokeRegisterMethod_callbackTo3_2_supplytest(){
+			var keyObj = $.workbus.getInvokeKeyObjFromJobj('supplytest', $($.workbus.getSelfIframe()));
+			$.workbus.invokeRegisterMethod(keyObj.level, 'supplytest',{name:'我是从3-1来的'}, keyObj.key);
+		}
+		
+		
+		function test() {
+			$.workbus.getWorkzone().workbus_test();
+		}
+		function workbus_test() {
+			alert('workbus3-1_test');
+		}
+		function methodSupplyToWorkzone_a_b_c(){
+			$.winmess.show({title:'My Title'});
+			$.workbus.methodSupplyToWorkzone('$.winmess.show');
+		}
+		function invokeRegisterMethod_a_b_c(){
+			$.workbus.invokeRegisterMethodFromWorkzone('$.winmess.show',{title:'我是从3-1来的'});
+		}
+		///////////////////////////winhelper
+		function invokeRegisterMethod_winHelperOpenFromTop(){
+			var para = {id:'testOpenDivId', //必选 对话框的id
+					url: 'winphelper1.html', //必选，对话框的url
+					callbackFuncNameStr: 'invokeRegisterMethod_winHelperOpenFromTop_callback' //关闭对话框时要调用的回调函数
+					};
+			$.workbus.invokeRegisterMethodFromTop('$.winphelper.openWinp',  para);
+			
+		}
+		function invokeRegisterMethod_winHelperOpenFromTop_callback(){
+			if(arguments.length!=0){
+				alert(arguments[0].name);
+			}
+			alert('3-1:invokeRegisterMethod_winHelperOpenFromTop_callback:');
+		}
+		/////////////////////////////
+	</script>
+</head>
+<body style="padding: 0; margin: 0;" class="easyui-layout" split="true">
+	<div id="eeee" region="east" border="true" style="width: 400px; overflow: hidden; background: #eee;">
+		<a href="javascript:test()" class="easyui-linkbutton">getWorkzone</a>
+		<a href="javascript:methodSupplyToWorkzone_a_b_c()" class="easyui-linkbutton">methodSupplyToWorkzone_a.b.c</a>
+		<a href="javascript:invokeRegisterMethod_a_b_c()" class="easyui-linkbutton">invokeRegisterMethod_a_b_c</a>
+		<a href="javascript:methodSupplyToWorkzone_supplytest()" class="easyui-linkbutton">methodSupplyToWorkzone_supplytest</a>
+		<a href="javascript:methodSupplyToWorkzone_supplytest3_1()" class="easyui-linkbutton">methodSupplyToWorkzone_supplytest3_1</a>
+		<a href="javascript:invokeRegisterMethod_supplytest()" class="easyui-linkbutton">invokeRegisterMethod__supplytest</a>
+		<a href="javascript:invokeRegisterMethod_supplytest3_1()" class="easyui-linkbutton">invokeRegisterMethod_supplytest3_1</a>
+		<a href="javascript:invokeCallBackMethodFromPreIframe_callbackTo3_2_supplytest()" class="easyui-linkbutton">invokeCallBackMethodFromPreIframe_callbackTo3_2_supplytest</a>
+		<a href="javascript:invokeCallBackMethodFromPreIframeDefault_callbackTo3_2_supplytest()" class="easyui-linkbutton">invokeCallBackMethodFromPreIframeDefault_callbackTo3_2_supplytest</a>
+		<a href="javascript:invokeRegisterMethod_callbackTo3_2_supplytest()" class="easyui-linkbutton">invokeRegisterMethod_callbackTo3_2_supplytest</a>
+		win helper :<br/>
+		<a href="javascript:invokeRegisterMethod_winHelperOpenFromTop()" class="easyui-linkbutton">invokeRegisterMethod_winHelperOpenFromTop</a>
+	</div>
+	<div id="tabDiv" region="north" border="true" style="height: 27px; overflow: hidden; background: #eee;">
+		
+	</div>
+	<div id="iframeDiv" region="center" border="true" style="overflow: hidden;">
+		
+	</div>
+</body>
+</html>
+
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Workzone3 JQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/workzone.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../common/json2.js"></script>
+
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-comp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-workzone.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winmess.js"></script>
+	<script type="text/javascript" src="../jquery-workbus-plugin.js"></script>
+	<script>
+		$(function(){
+			$('#tabDiv').workzone({
+				nodes: [{
+					title: '新标题一',
+					url: 'menu.html',
+					menuId: 1001
+				},{
+					title: '新标题二',
+					url: 'splitbutton.html',
+					menuId: 1002
+				},{
+					title: '新标题三',
+					url: 'tree.html',
+					menuId: 1003
+				},{
+					title: '新标题四',
+					url: 'comp.html',
+					menuId: 1004
+				},{
+					title: '新标题五',
+					url: 'comp.html',
+					menuId: 1005
+				},{
+					title: '新标题六',
+					url: 'comp.html',
+					menuId: 1006
+				},{
+					title: '新标题七',
+					url: 'comp.html',
+					menuId: 1007
+				},{
+					title: '新标题八',
+					url: 'comp.html',
+					menuId: 1008
+				}],
+				iframeWorkzoneId: 'iframeDiv',
+				onClickInvokeIframeMethod: 'clickInvokeMethod',
+				defaultOpenedNode: {title: 'DefaultNodeTitle', url: 'comp.html', menuId: 2001},
+				maxTabNum: 7,
+				maxTabOverInvokeMethod: 'overMaxNumMethod',
+				maxTabOverOpenChoiceDialog: true, 
+				lazyLoadUrl: true
+			});
+			
+
+			
+		});
+		function clickInvokeMethod() {
+			alert('clickInvokeMethod');
+		}
+		function overMaxNumMethod() {
+			alert('超过最大打开数');
+		}
+		function add() {
+			$('#tabDiv').workzone('open', {title: 'New-Title1', url: 'www.baidu.com', menuId: 3001});
+		}
+		function activateByMenuId(menuId) {
+			$('#tabDiv').workzone('activateTabByMenuId', menuId);
+		}
+		function activateByTitle(title) {
+			$('#tabDiv').workzone('activateTabByTitle', title);
+		}
+		function activateByIndex(index) {
+			$('#tabDiv').workzone('activateTabByIndex', index);
+		}
+		function openWorkzoneChoiceDialog() {
+			$('#tabDiv').workzone('openWorkzoneChoiceDialog');
+		}
+	</script>
+</head>
+<body class="easyui-layout" fit="true">
+	<div region="north" border="false">
+		<div style="margin-bottom: 5px;">
+			<a href="javascript:add();" class="easyui-linkbutton">add</a>
+			<a href="javascript:activateByMenuId(1004);" class="easyui-linkbutton">activateByMenuId(4)</a>
+			<a href="javascript:activateByTitle('新标题三');" class="easyui-linkbutton">activateByTitle(3)</a>
+			<a href="javascript:activateByIndex(1);" class="easyui-linkbutton">activateByIndex(1)</a>
+			<a href="javascript:openWorkzoneChoiceDialog();" class="easyui-linkbutton">openWorkzoneChoiceDialog</a>
+		</div>
+		<div id="tabDiv" style="height: 27px; overflow: hidden;"></div>
+	</div>
+	<div id="iframeDiv" region="center" border="true"></div>
+</body>
+</html>
+
+

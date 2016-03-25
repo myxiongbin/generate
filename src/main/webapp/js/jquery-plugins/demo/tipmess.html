@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Tipmess JQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-tipmess.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winp.js"></script>
+	<script type="text/javascript" src="../../common/json2.js"></script>
+	<script>
+		$(function() {
+			$("#wrap").tipmess({
+				actors: [{
+					id: "1001",
+					url: "tipmess_data.json",
+					queryPara: {},
+					time: 2000,
+					href: "javascript:fun1();"
+				}]
+			});
+		})
+		function fun1() {
+			alert("消息处理操作");
+		}
+		function addActor() {
+			$("#wrap").tipmess("addActor", {});
+		}
+		function removeActorById() {
+			$("#wrap").tipmess("removeActorById", "1001");
+		}
+	</script>
+</head>
+<body>
+	<div style="line-height: 25px;">您有<a id="wrap" href="javascript:void(0);">0</a>条待办任务需要处理！</div>
+	<div style="line-height: 25px;">
+		<a href="javascript:addActor();" type="rectangle" class="easyui-linkbutton">addActor</a>
+		<a href="javascript:removeActorById();" type="rectangle" class="easyui-linkbutton">removeActorById</a>
+	</div>
+</body>
+</html>
+
+

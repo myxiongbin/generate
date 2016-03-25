@@ -1,0 +1,115 @@
+.tipshow-wrap {	/* table */
+	border-spacing: none;
+	border-collapse: collapse;
+	height: 54px;
+	overflow: hidden;
+}
+.tipshow-wrap td {
+	margin: 0;
+	padding: 0;
+}
+
+/* 背景样式 */
+.tipshow-main {
+	width: 100%;
+	height: 34px;
+}
+.tipshow-main div {
+	float: left;
+	height: 100%;
+}
+.main-left {
+	background: url(images/tipshow/message_bg_1.png) no-repeat;
+}
+.main-left a {
+	font-weight: bold;
+	margin-top: 5px;
+	color: #fff;
+}
+.main-right {
+	background: url(images/tipshow/message_bg_5.png) repeat-x;
+}
+.main-right a {
+	font-weight: bold;
+	margin-top: 5px;
+	color: #fff;
+}
+.main-last {
+	width: 7px;
+	background: url(images/tipshow/message_bg_6.png) no-repeat;
+}
+
+/* 提示消息 */
+.main-text-left {
+	width: 7px;
+	background: url(images/tipshow/message_bg_2.png) no-repeat;
+}
+.main-text-center {
+	background: url(images/tipshow/message_bg_3.png) repeat-x;
+}
+.main-text-right {
+	width: 6px;
+	background: url(images/tipshow/message_bg_4.png) no-repeat;
+}
+.main-text-icon {
+	width: 24px;
+	height: 34px;
+	background: url(images/tipshow/ico_43.png) center no-repeat;	
+}
+.main-text-con {
+	font-family: "宋体",
+	overflow: hidden;
+	width: 165px;
+	cursor: pointer;
+	color: #444;
+	font-weight: bold;
+	height: 34px;
+	line-height: 34px;
+}
+.main-text-con > marquee:hover {
+	text-decoration: underline;
+}
+.main-text-con:hover span {
+	color: #f00;
+}
+.main-text-con span {
+	color: #06c;
+	text-decoration: none;
+}
+
+/* 分隔线 */
+.tipshow-sep {
+	background: url(images/tipshow/fenge.png) center no-repeat;
+}
+
+/* 阴影 */
+.tipshow-shadow {
+	width: 100%;
+	height: 20px;
+	position: relative;
+}
+.shadow-left, .shadow-center, .shadow-right {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+.shadow-left {
+	width: 7px;
+	left: 0;
+	background: url(images/tipshow/message_bg2_1.png) no-repeat;
+}
+.shadow-center {
+	left: 7px;
+	right: 7px;
+	background: url(images/tipshow/message_bg2_2.png) repeat-x;
+}
+.shadow-right {
+	width: 7px;
+	right: 0;
+	background: url(images/tipshow/message_bg2_3.png) no-repeat;
+}
+
+/* 提示窗口样式 */
+.tipshow-winp {
+	padding: 3px;
+}

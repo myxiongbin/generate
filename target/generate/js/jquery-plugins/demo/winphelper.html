@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>winphelper</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/workzone.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../common/json2.js"></script>
+
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-comp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-workzone.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winmess.js"></script>
+	<script type="text/javascript" src="../jquery-workbus-plugin.js"></script>
+	<script>
+		$(function() {
+			$('#tabDiv').workzone({
+				iframeWorkzoneId: 'iframeDiv',
+				nodes: [
+			        {title: 'xyz', url: 'xyz.html', menuId: 1002},
+			        {title: 'workbus1', url: 'workbus1.html', menuId: 1001}
+				]
+				//,onClickInvokeIframeMethod: 'test'
+			});
+		});
+
+		function methodSupplyToTop(){
+			$.workbus.methodSupplyToTop('supplytest');
+		}
+		function supplytest(){
+			alert('supplytest_workbus');
+		}
+		function invokeRegisterMethod(){
+			$.workbus.invokeRegisterMethod(1,'supplytest');
+		}
+		
+		function workbus_test() {
+			alert('workbus_test');
+		}
+		
+		function getRegisterArray(){
+			var list = $.workbus.getRegisterArray();
+			var str = [];
+			for(var i=0; i<list.length; i++){
+				str.push(list[i].funcNameStr+"  "+list[i].keyArr.join(","));
+			}
+			alert(str);
+		}
+
+		function registerMapOpen(){
+			$.workbus.methodSupplyToTop('openMap');
+			self.pointMap({name:'test'});
+		}
+		function openMap(para){
+			alert("现在打开地图了,,因为不是iframe模式，需要自行绑定回调事件:来源名称："+para.name);
+			var ifmMap = document.getElementById("bindcallback");
+			//因为不是iframe模式，需要自行绑定回调事件
+			$.workbus.setInvokeKeyObjToJobj(para.callbackFuncNameStr, $(ifmMap),  para._keyStr);
+		}
+		function invokeMapOpen(){
+			$.workbus.invokeRegisterMethodFromWorkzone('openMap',{name:'来自workbus的调用,调用方法：openMap', callbackFuncNameStr:"pointMap"});
+		}
+		function invokeMapOpenCallback(){
+			var ifmMap = document.getElementById("bindcallback");
+			//取出回调数据
+			var keyStrObj = $.workbus.getInvokeKeyObjFromJobj("pointMap", $(ifmMap));
+			$.workbus.invokeRegisterMethod(keyStrObj.level, keyStrObj.funcNameStr, {name:'top:invokeMapOpenCallback',x: 1111, y:2222}, keyStrObj.key);
+		}
+		function pointMap(){
+			alert('workbus的pointMap被调用');
+			if(arguments.length!=0){
+				alert("来源："+arguments[0].name+" x:"+arguments[0].x+"  y:"+arguments[0].y);
+			}
+		}
+	</script>
+</head>
+<body style="padding: 0; margin: 0;" class="easyui-layout" split="true">
+	<div id="tabDiv" region="north" border="true" style="height: 27px; overflow: hidden; background: #eee;">
+	
+		open Winp:<br/>
+		<a href="javascript:openWinp()" class="easyui-linkbutton">获取</a><br/>
+		<a href="javascript:invokeRegisterMethod()" class="easyui-linkbutton">invokeRegisterMethod</a>
+		<a href="javascript:methodSupplyToTop()" class="easyui-linkbutton">methodSupplyToTop</a>
+		<a href="javascript:registerMapOpen()" class="easyui-linkbutton">注册地图打开方法</a>
+		<a href="javascript:invokeMapOpen()" class="easyui-linkbutton">调用地图打开方法</a>
+		<a href="javascript:invokeMapOpenCallback()" class="easyui-linkbutton">调用地图打开方法的回调函数</a>
+		<div id="bindcallback">这个div用来绑定某个回调事件</div>
+	</div>
+	<div id="iframeDiv" region="center" border="false" style="overflow: hidden;">
+		
+	</div>
+</body>
+</html>
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Combo - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../upload/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-comp.js"></script>
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script>
+		$(function(){
+
+			//下拉框
+			$('#loginName').comp(
+					{
+						//isInputType:false,
+						singleSelect: false,
+						singleSelectImmediaClosePanel: true,
+						
+						list:{
+							keyFieldName:'_ID',
+							valueFieldName:'modelObj.loginName' 
+							},
+						url: "queryByArgs.json",
+						
+						inputTextId:'loginName',
+					 	inputKeyId:'userId'
+					});
+			$('#realName').comp(
+					{
+						//isInputType:false,
+						singleSelect: false,
+						singleSelectImmediaClosePanel: true,
+						
+						type:'tree',
+						tree:{
+							cascadeCheck: true,
+							rootCanChoice: true,//根节点可选
+
+							//onlyLeafCheck: true,
+							superIdAttrName: '',//必填 superId，如 modelObj.superId
+							isNodeLeafAttrName: 'isLeaf_tree', //必填 是否是叶子节点  如isLeaf_tree
+							idAttrName: 'modelObj.seqId',//必填
+							textAttrName: 'modelObj.realName'//必填
+							},
+						url: "queryTreeByArgs.json",
+						
+						inputTextId:'realName',
+					 	inputKeyId:'userId2'
+					});
+			
+		});
+		function disabled(obj) {
+			$(obj).comp('disabledCompEvent', 'click');
+		}
+		function activate(obj) {
+			$(obj).comp('activateCompEvent');
+		}
+	</script>
+</head>
+<body>
+	<h2>Custom Comp</h2>
+	<div class="demo-info" style="margin-bottom:10px">
+		<div class="demo-tip icon-tip"></div>
+		<div>Click the right arrow button to show drop down panel that can be filled with any content.</div>
+	</div>
+	<div>
+		<a href="javascript:disabled('#loginName');" class="easyui-linkbutton">disabled-DataGrid</a>
+		<a href="javascript:activate('#loginName');" class="easyui-linkbutton">activate-DagaGrid</a>
+		<a href="javascript:disabled('#realName');" class="easyui-linkbutton">disabled-Tree</a>
+		<a href="javascript:activate('#realName');" class="easyui-linkbutton">activate-Tree</a>
+	</div>	
+	<table border="1" width="100%">
+		<tr>
+			<td width="80">List</td>
+			<td><input id="loginName" name="loginName" /></td>
+		</tr>
+		<tr>
+			<td>Tree</td>
+			<td><input id="realName" name="realName" /></td>
+		</tr>
+	</table>	
+</body>
+</html>
+
+

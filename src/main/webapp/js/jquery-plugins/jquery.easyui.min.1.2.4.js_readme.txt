@@ -1,0 +1,63 @@
+//add by qsd 20111125
+为 combobox 添加 json 的url。返回ret如果是对象，先自动剥一层皮
+
+//add by qsd 20111125_2
+为combotree 添加 json 的url。返回ret如果是对象，先自动剥一层皮
+
+//add by qsd 20111128
+为combo添加iframeurl属性。添加后自动在屁股添加iframe
+
+//add by qsd 20111202
+为combo 的iframeurl，每次打开估计激活 resize函数
+
+//add by qsd 20111202-2
+为combogrid 添加 json 的url。返回ret如果是对象，先自动剥一层皮
+
+
+//add by qsd 20120401_1
+为validatebox添加新功能，tip在下方：修改esyui.min.js、validatebox.css、easyui.css、validatebox_pointer.gif
+
+//add by qsd 20120401_2 
+为combo添加100%自适应
+
+//add by qsd 20120405_1
+为linkbutton添加样式
+
+//add by qsd 20120409_1
+为tablegrid可控制鼠标mouseover和onclick是否有css样式，加快显示效率。
+
+// add by qsd 2012-5-4
+为combo添加，不可编辑时，点击响应下拉
+
+//add by qsd 2012-5-7 
+添加datagrid。contextType属性
+
+//add by qsd 2012-5-8  
+修改datagrid的url，添加ajaxjson属性。
+
+//add by qsd 2012-5-8_2
+修改tree。添加ajaxjson属性---未完成
+
+//add by qsd 20120514_1
+为linkbutton 添加新样式 short_rect short_eclipse backt
+easyui.min.js easyui.css  
+//add by qsd 20120514_2
+添加新的icon  修改icon.css
+
+//add by qsd zb 2012-5-25
+添加layout 背景
+
+//add by qsd zb 2012-5-25_2
+修改panel的右上方按钮（没修改，只是注释，备用）
+
+//add by qsd zb 2012-5-25_3
+添加winp的样式
+
+//add by qsd 2012-5-25_4
+修改按钮样式，改为自动适应，只需要添加css即可。
+
+//add by qsd 2012-7-11
+添加datagrid的onBeforeSelectPage方法
+
+// modify by huangjian 20120806
+修改静态前台排序，支持深层次排序方式

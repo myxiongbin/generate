@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>loginlayer—登录层</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/loginlayer.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/jform.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../common/json2.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquery-form-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-loginlayer.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#login-layer").loginlayer({
+				contentId: "login",
+				position: {
+					top: 40,
+					left: 180
+				},
+				onSubmit: function(data) {
+					submit(data);
+				}
+			});
+		});
+		function open() {
+			$("#login-layer").loginlayer("open");
+		};
+		function close() {
+			$("#login-layer").loginlayer("close");
+		};
+		function submit(data) {
+			if (!data || data == null) {
+				data = $("#login-layer").loginlayer("getData");
+			}
+			var str = "";
+			for (var i in data) {
+				str += i + ":  " + data[i] + "\n";
+			}
+			alert(str);
+		};
+	</script>
+</head>
+<body class="easyui-layout" fit="true">
+	<div region="center" border="false">
+		<a href="javascript:open();" class="easyui-linkbutton" type="rectangle">登&nbsp;&nbsp;录</a>
+	</div>
+	<div id="login-layer"></div>
+	
+	<!-- 登录区域start -->
+	<div id="login">
+		<form id="loginForm">
+			<input id="loginForm:forceLogin" type="hidden" value="" />
+			<table style="line-height: 25px;">
+				<tr>
+					<td><label for="loginForm:loginName">用户名：</label></td>
+					<td><input id="loginForm:loginName" type="text" style="width: 160px;" /></td>
+				</tr>
+				<tr>
+					<td><label for="loginForm:password">密码：</label></td>
+					<td><input id="loginForm:password" type="password" style="width: 160px;" /></td>
+				</tr>
+				<tr>
+					<td><label for="loginForm:validCode">验证码：</label></td>
+					<td>
+						<input id="loginForm:validCode" type="text" style="width: 80px;" />
+						<img src="../themes/default/images/loginlayer/validcode.bmp" style="vertical-align: top; margin-top: 2px;" />
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>
+						<input id="loginForm:rememberPassword" type="checkbox" style="vertical-align: middle; margin: 0 2px 3px 4px;" />
+						<label for="loginForm:rememberPassword">记住密码</label>
+						<select id="loginForm:cookiesExpiration" style="margin-left: 5px;">
+							<option value="1">一周</option>
+							<option value="2">一个月</option>
+							<option value="3">半年</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>
+						<a href="javascript:submit()" class="easyui-linkbutton" type="rectCrystal">确定</a>
+						<a href="javascript:close();" class="easyui-linkbutton" type="rectCrystal" style="margin-left: 5px;">取消</a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- 登录区域end -->
+</body>
+</html>
+
+

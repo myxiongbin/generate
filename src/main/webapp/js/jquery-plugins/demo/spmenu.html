@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>纵向可收缩菜单示例</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/spmenu.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../upload/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-spmenu.js"></script>
+	
+	<script type="text/javascript">
+		$(function() {
+			$("#mm").spmenu({
+				onClickLeafMenu: function(node) {
+					alert("src——" + node.src 
+							+ "\nclosed——" + node.closed 
+							+ "\nparentMenuId——" + node.parentMenuId 
+							+ "\nmenuId——" + node.menuId 
+							+ "\ntitle——" + node.title 
+							+ "\nattributes——" + node.attributes);
+				},
+				onClickExpand: function() {
+					expand();
+				},
+				nodes: [{
+					menuId: "1001",
+					title: "区域信息管理(1001)",
+					iconCls: "icon-ok",
+					type: "tree",
+					parentMenuId: "0",
+					closed: true
+				},{
+					menuId: "1002",
+					title: "案件分类管理(1002)",
+					iconCls: "icon-print",
+					type: "iframe",
+					src: "comp.html",
+					closed: false,
+					parentMenuId: "0"
+				},{
+					menuId: "1003",
+					title: "人员信息管理(1003)",
+					iconCls: "icon-redo",
+					parentMenuId: "0",
+					closed: false,
+				},{
+					menuId: "1004",
+					title: "案件登记(1004)",
+					parentMenuId: "1001"
+				},{
+					menuId: "1006",
+					title: "案件回退(1006)",
+					parentMenuId: "1005",
+					attributes: {
+						id: "_id",
+						name: "_name"
+					}
+				},{
+					menuId: "1005",
+					title: "流程列表(1005)",
+					parentMenuId: "1004",
+					closed: false
+				},{
+					menuId: "1007",
+					title: "案件详情(1007)",
+					parentMenuId: "1001"
+				}],
+				border: true,
+				expand: true
+			});
+		});
+		function expand() {
+			if ($("#mm").width() == "212") {
+				$("body").layout("panel", "center").panel("resize",{
+					width: $("#wz").width() + 207,
+					left: 5
+				})
+				$("body").layout("panel", "west").panel("resize", {
+					width: 5
+				});
+			} else {
+				$("body").layout("panel", "center").panel("resize",{
+					width: $("#wz").width() - 207,
+					left: 212
+				})
+				$("body").layout("panel", "west").panel("resize", {
+					width: 212
+				});
+			}
+		};
+		function add() {
+			// var vv = document.myform.tt[0].value;
+			var vv = (document.forms[0].tt[0].checked) ? "tree" : "iframe";
+			var clo = (document.forms[0].clo[0].checked) ? "true" : "false";
+			$("#mm").spmenu("add", {
+				menuId: $("#menuId").val(),
+				title: $("#title").val() + "(" + $("#menuId").val() + ")",
+				iconCls: $("#iconCls").val(),
+				parentMenuId: $("#parentMenuId").val(),
+				type: vv,
+				src: $("#src").val(),
+				closed: clo
+			});
+		};
+		function removeByMenuId() {
+			$("#mm").spmenu("removeByMenuId", $("#menuId").val());
+		};
+	</script>
+	<style>
+		th { text-align: right; font-weight: normal;}
+		input[type="text"] { border: 1px solid #ccc;}
+	</style>
+</head>
+<body class="easyui-layout" fit="true">
+	<div region="north" border="false" style="height: 70px; background: #000;"></div>
+	
+	<!-- 说明：如果使用边框，在不改变样式的情况下，外框宽度最好设为212px -->
+	<div id="mm" region="west" border="false" style="width: 212px;"></div>
+	
+	<div id="wz" region="center" border="false" style="overflow: hidden;">
+		<div class="easyui-layout" fit="true">
+			<div region="north" border="false" style="height: 30px;"></div>
+			<div region="west" border="false" style="width: 5px;"></div>
+			<div region="east" border="false" style="width: 5px;"></div>
+			<div region="center" border="true" style="overflow: hidden; line-height: 30px; padding: 5px;">
+				<form name="myform">
+					<table cellpadding="0" cellspacing="0" class="form-style">
+						<tr><th>parentMenuId：</th><td><input type="text" id="parentMenuId" value="0" /></td></tr>
+						<tr><th>menuId：</th><td><input type="text" id="menuId" value="1" /></td></tr>
+						<tr><th>title：</th><td><input type="text" id="title" value="New-Menu-Title" /></td></tr>
+						<tr><th>iconCls：</th><td><input type="text" id="iconCls" value="icon-save" /></td></tr>
+						<tr>
+							<th>type：</th>
+							<td>
+								<input type="radio" name="tt" id="tree" value="tree" checked="checked" /><label for="tree">tree</label>
+								<input type="radio" name="tt" id="iframe" value="iframe" /><label for="iframe">iframe</label>
+							</td>
+						</tr>
+						<tr>
+							<th>closed：</th>
+							<td>
+								<input type="radio" name="clo" id="tr" checked="checked" /><label for="tr">true</label>
+								<input type="radio" name="clo" id="fa" /><label for="fa">false</label>
+							</td>
+						</tr>
+						<tr><th>src：</th><td><input type="text" id="src" value="" /></td></tr>
+						<tr><th>attributes：</th><td><input type="text" id="attributes" readonly="readonly" value="" /></td></tr>
+						<tr><td colspan="2" align="center">
+							<a href="javascript:add();" type="rectangle" class="easyui-linkbutton">add</a>
+							<a href="javascript:removeByMenuId();" type="rectangle" class="easyui-linkbutton">remove</a>
+						</td></tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div region="south" border="false" style="height: 30px; background: #000;"></div>
+</body>
+</html>
+
+

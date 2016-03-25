@@ -1,0 +1,58 @@
+.rm-wrap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.rm-left, .rm-right {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+.rm-left {
+	cursor: pointer;
+	left: 0;
+	width: 40px;
+	background: url("images/rollmenu/channel_btn_back_unenable.png") no-repeat;
+}
+.rm-left-hover {
+	background: url("images/rollmenu/channel_btn_back_pressed.png") no-repeat;
+}
+.rm-center {
+	width: 0px;
+	margin: 0 auto;
+	height: 100%;
+	overflow: hidden;
+}
+.rm-right {
+	cursor: pointer;
+	right: 0;
+	width: 40px;
+	background: url("images/rollmenu/channel_btn_pre_unenable.png") no-repeat;
+}
+.rm-right-hover {
+	background: url("images/rollmenu/channel_btn_pre_pressed.png") no-repeat;
+}
+.rm-container {
+	width: 1000%;
+	height: 100%;
+	overflow: hidden;
+}
+.rm-container > a {
+	/*background: #000;*/
+	display: inline-block;
+	outline: none;
+	width: 40px;
+	height: 40px;
+	margin: 0 10px;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+.rm-container > a:hover {
+	background: transparent;
+}
+.rm-container > a > img {
+	border: none;
+	width: 40px;
+	height: 40px;
+}

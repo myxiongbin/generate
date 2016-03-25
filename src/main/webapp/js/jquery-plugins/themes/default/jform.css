@@ -1,0 +1,260 @@
+/**
+ * version 1.0
+ */
+.jform {
+	cursor: default;
+	margin: 0;
+	padding: 0;
+}
+
+.jform table {
+	border-spacing: none;
+	border-collapse: collapse;
+}
+
+.jform tr {
+	height: 25px;
+	line-height: 25px;
+	overflow: auto;
+}
+
+.jform th {
+	overflow: hidden;
+	font-weight: normal;
+	text-align: right;
+	vertical-align: middle;
+}
+
+.jform td {
+	overflow: hidden;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.jform *[disabled="disabled"] {
+	color: #999;
+}
+
+.jform input[type="text"] {
+	padding: 1px;
+	width: 128px;
+	border: 1px solid #b2cffb;
+	vertical-align: middle;
+}
+
+.jform input[type="password"] {
+	padding: 1px;
+	width: 128px;
+	border: 1px solid #b2cffb;
+}
+
+.jform select {
+	width: 132px;
+	border: 1px solid #b2cffb;
+}
+
+.jform input[type="radio"] {
+	vertical-align: middle;
+	margin: 0 2px 3px 4px;
+	padding: 0;
+}
+
+.jform input[type="checkbox"] {
+	vertical-align: middle;
+	margin: 0 2px 3px 4px;
+	padding: 0;
+}
+
+.jform textarea {
+	width: 300px;
+	height: 100px;
+	border: 1px solid #b2cffb;
+	overflow: auto;
+	padding: 1px;
+}
+
+.jform button {
+	line-height: normal;
+}
+
+/**
+ * version 2.0
+ */
+.jform2 {
+	line-height: 25px;
+}
+
+.jform2 * {
+	color: #555;
+	font-size: 12px;
+	font-family: helvetica, tahoma, verdana, sans-serif;
+	/* 一个汉字等于4个&nbsp; */
+}
+
+.jform2 table {
+	border-spacing: none;
+	border-collapse: collapse;
+}
+
+.jform2 th {
+	font-weight: normal;
+	text-align: right;
+	vertical-align: middle;
+}
+
+.jform2 td {
+	vertical-align: middle;
+}
+
+.jform2 input[type="text"] {
+	width: 130px;
+	border: 1px inset #eee;
+}
+
+.jform2 input[type="password"] {
+	width: 130px;
+	border: 1px inset #eee;
+}
+
+.jform2 input[type="file"] {
+	display: none;
+}
+
+.jform2 button,.jform2 input[type="button"],.jform2 input[type="reset"],.jform2 input[type="submit"]
+	{
+	background: url("images/all_button.png") -69px -50px no-repeat;
+	border: none;
+	height: 21px;
+	width: 73px;
+	color: whitesmoke;
+	margin: 0;
+	padding: 0;
+	line-height: 21px;
+}
+
+.jform2 button:hover,.jform2 input[type="button"]:hover,.jform2 input[type="reset"]:hover,.jform2 input[type="submit"]:hover
+	{
+	color: tan;
+}
+
+.jform2 select {
+	width: 132px;
+	border: 1px inset #eee;
+}
+
+.jform2 textarea {
+	width: 300px;
+	height: 100px;
+	border: 1px inset #eee;
+	overflow: auto;
+}
+
+.jform2 input[type="radio"] {
+	vertical-align: middle;
+	margin: 0px 0px 3px 5px; /* 3305 */
+}
+
+.jform2 input[type="checkbox"] {
+	vertical-align: middle;
+	margin: 0px 0px 3px 5px; /* 3304 */
+}
+
+.jform2 img {
+	border: none;
+	vertical-align: middle;
+	margin-bottom: 3px;
+}
+
+.jform2 *[disabled] {
+	background: #efefef;
+}
+
+/**
+ * version 3.0
+ */
+.jform3 * {
+	font-size: 12px;
+	font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+	vertical-align: middle;
+}
+.jform3 fieldset {
+	border-radius: 5px;
+	padding: 15px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, .25);
+	margin-top: 10px;
+	margin-top: 0px\9;
+}
+@media screen and (min-width: 0) {
+	.jform3 fieldset {
+		border: 1px solid transparent;
+	}
+}
+.jform3 legend {
+	color: #0046d5;
+	background: #fff;
+	cursor: default;
+}
+.jform3 table {
+	width: 100%;
+	border-spacing: 0;
+}
+.jform3 th {
+	text-align: right;
+	font-weight: normal;
+}
+.jform3 td {
+	vertical-align: middle;
+}
+.jform3 input[type="text"],
+.jform3 input[type="password"],
+.jform3 textarea {
+	width: 100%;
+	*width: 98%;
+	border: 1px solid #d0d0bf;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	padding: 2px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .08) inset;
+	margin: 2px 0;
+	color: #444;
+}
+.jform3 input[type="text"]:focus,
+.jform3 input[type="password"]:focus,
+.jform3 textarea:focus {
+	outline: none;
+}
+.jform3 input[type="text"],
+.jform3 input[type="password"] {
+}
+.jform3 textarea {
+	overflow: auto;
+	height: 80px;
+}
+.jform3 select {
+	border: 1px solid #d0d0bf;
+	color: #444;
+	padding: 1px 0;
+	margin: 2px 0;
+}
+.jform3 select:focus {
+	outline: none;
+}
+.jform3 label {
+	display: inline-block;
+	margin: 2px 0;
+}
+.jform3 input[type="radio"],
+.jform3 input[type="checkbox"] {
+	margin: 2px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.jform3 td input[type="radio"],
+.jform3 td input[type="checkbox"] {
+	margin: 0 3px 2px 2px;
+	margin-right: 1px\9;
+}
+.jform3 *[disabled] {
+	background: #fff;
+	color: #999!important;
+}

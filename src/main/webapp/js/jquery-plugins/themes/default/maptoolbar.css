@@ -1,0 +1,32 @@
+.mtb-close {
+	float: right;
+	height: 100%;
+}
+.mtb-closebtn {
+	margin-top: 3px;
+}
+.mtb-wrap {
+	height: 35px;
+	line-height: 35px;
+	overflow: hidden;
+}
+.mtb-left, .mtb-right {
+	height: 100%;
+}
+.mtb-left {
+	float: left;
+}
+.mtb-right {
+	float: right;
+}
+.mtb-icon {
+	outline: none;
+	display: inline-block;
+	width: 32px;
+	height: 35px;
+	margin: 0 3px;
+}
+.mtb-icon-clickdown {
+	width: 100%;
+	height: 100%;
+}

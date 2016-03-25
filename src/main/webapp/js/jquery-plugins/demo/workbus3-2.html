@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Workzone JQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/workzone.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../common/json2.js"></script>
+
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-comp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-workzone.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winmess.js"></script>
+	<script type="text/javascript" src="../jquery-workbus-plugin.js"></script>
+	<script>
+		$(function() {
+
+		});
+		function methodSupplyToTop(){
+			$.workbus.methodSupplyToTop('supplytest3_2');
+		}
+		function methodSupplyToWorkzone_supplytest(){
+			$.workbus.methodSupplyToWorkzone('supplytest');
+		}
+		function supplytest(){
+			if(arguments.length!=0){
+				alert(arguments[0].name);
+			}
+			alert('3-2:supplytest');
+		}
+		function supplytest3_2(para){
+			if(arguments.length!=0){
+				alert(arguments[0].name);
+			}
+			alert('3_2:supplytest3_2');
+		}
+		function invokeRegisterMethod(){
+			$.workbus.invokeRegisterMethodFromTop('supplytest3_2',{name:'我是从3-2来的'});
+		}
+		function invokeRegisterMethod_supplytest(){
+			$.workbus.invokeRegisterMethodFromWorkzone('supplytest',{name:'我是从3-2来的'});
+		}
+		function invokeRegisterMethod_supplytest3_1_callback_supplytest(){
+			$.workbus.invokeRegisterMethodFromWorkzone('supplytest3_1',{name:'我是从3-2来的', callbackFuncNameStr:"supplytest"});
+		}
+		
+		function test() {
+			$.workbus.getTop().workbus_test();
+		}
+		function test2() {
+			$.workbus.getWorkzone().workbus_test();
+		}
+		function workbus_test() {
+			alert('workbus3-2_test');
+		}
+		function getSelfIframe(){
+			var obj = $.workbus.getSelfIframe();
+			var jo = $(obj);
+			alert(jo.attr('index'));
+		}
+		function closeSelfByPreWorkzone(){
+			$.workbus.closeSelfByPreWorkzone();
+		}
+		function closeSelfByPreWinp(){
+			$.workbus.closeSelfByPreWinp();
+		}
+		var onBeforeClose = function(){
+			alert('onBeforeClose');
+		}
+		function openWinpByPre(){
+			$.workbus.openWinpByPre({id:'testDialog222', title:'测试3-3openWinpByPre', url:'workbus3-3.html', onBeforeClose:onBeforeClose, callbackFuncNamsStr:'supplytest3_2'});
+		}
+		function openWinpByTop(){
+			$.workbus.openWinpByTop({id:'testDialog222', title:'测试3-3openWinpByTop', url:'workbus3-3.html', callbackFuncNamsStr:'supplytest3_2'});
+		}
+		function openWinpByWorkzone(){
+			$.workbus.openWinpByWorkzone({id:'testDialog222', title:'测试222openWinpByWorkzone', url:'workbus3-3.html', callbackFuncNamsStr:'supplytest3_2'});
+		}
+	</script>
+</head>
+<body style="padding: 0; margin: 0;" class="easyui-layout" split="true">
+	<div id="eeee" region="east" border="true" style="width: 500px; overflow: hidden; background: #eee;">
+		<a href="javascript:test()" class="easyui-linkbutton">getTop</a>
+		<a href="javascript:test2()" class="easyui-linkbutton">getWokrzone</a>
+		<a href="javascript:invokeRegisterMethod()" class="easyui-linkbutton">invokeRegisterMethod</a>
+		<a href="javascript:methodSupplyToTop()" class="easyui-linkbutton">methodSupplyToTop</a>
+		<a href="javascript:getSelfIframe()" class="easyui-linkbutton">getSelfIframe</a>
+		<a href="javascript:closeSelfByPreWorkzone()" class="easyui-linkbutton">closeSelfByPreWorkzone</a>
+		<a href="javascript:closeSelfByPreWinp()" class="easyui-linkbutton">closeSelfByPreWinp</a>
+		<a href="javascript:openWinpByPre()" class="easyui-linkbutton">openWinpByPre</a>
+		<a href="javascript:openWinpByTop()" class="easyui-linkbutton">openWinpByTop</a>
+		<a href="javascript:openWinpByWorkzone()" class="easyui-linkbutton">openWinpByWorkzone</a>
+		<a href="javascript:methodSupplyToWorkzone_supplytest()" class="easyui-linkbutton">methodSupplyToWorkzone_supplytest()</a>
+		<a href="javascript:invokeRegisterMethod_supplytest()" class="easyui-linkbutton">invokeRegisterMethod_supplytest()</a>
+		<a href="javascript:invokeRegisterMethod_supplytest3_1_callback_supplytest()" class="easyui-linkbutton">invokeRegisterMethod_supplytest3_1_callback_supplytest</a>
+	</div>
+	<div id="tabDiv" region="north" border="true" style="height: 27px; overflow: hidden; background: #eee;">
+		
+	</div>
+	<div id="iframeDiv" region="center" border="true" style="overflow: hidden;">
+		
+	</div>
+</body>
+</html>
+
+

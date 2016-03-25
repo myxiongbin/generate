@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>printer</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/jform.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../upload/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-printer.js"></script>
+	
+	<script type="text/javascript">
+		$(function() {
+			$("#case_div").printer({
+				printArray: [
+					{src: "jform.html"},
+					{src: "tipshow.html"}
+				]
+			});
+		});
+
+		function _print() {
+			//$("#pp").hide();
+			$("#case_div").printer("print");
+			//$("#pp").show();
+		};
+	</script>
+	<style type="text/css">
+		/* 设置打印机的样式 */
+		@media print {
+			input[type="text"] { border: none;}
+			input[type="password"] { border: none;}
+			select { border: none;}
+			textarea { border: none;}
+			#pp { display: none;}
+		}
+	</style>
+</head>
+<body style="margin: 0; padding: 0; overflow: auto;">
+	<div id="case_div"></div>
+	<div id="pp" style="text-align: center; padding: 5px; border-top: 1px solid #99bbe8;">
+		<a href="javascript:_print();" type="rectangle" class="easyui-linkbutton" icon="icon-print">批量打印</a>
+	</div>
+</body>
+</html>
+
+

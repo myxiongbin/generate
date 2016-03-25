@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>相框组件</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/photoframe.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>	
+	<script type="text/javascript" src="../jquery-easyui-photoframe.js"></script>
+	<script>
+		$(function(){
+			$("#common1").photoframe({
+				nodes: [
+					{
+						url: "../themes/default/images/photoframe/1.jpg",
+						width: 300,
+						height: 150,
+						msg: "自定义图片宽高"
+					},{
+						url: "../themes/default/images/photoframe/2.jpg"
+					},{
+						url: "../themes/default/images/photoframe/3.jpg",
+						msg: "乡村"
+					},{
+						url: "../themes/default/images/photoframe/4.jpg"
+					},{
+						url: "../themes/default/images/photoframe/5.jpg"
+					}
+				]
+			});
+			$("#common2").photoframe({
+				onClick: function(obj) {
+					alert("自定义点击事件，当前图片url：" + obj.attr("src"));
+				},
+				nodes: [
+					{
+						url: "../themes/default/images/photoframe/1.jpg",
+						msg: "高度固定，宽度自适应，水平居中"
+					},{
+						url: "../themes/default/images/photoframe/2.jpg",
+						width: 300,
+						height: 80,
+						msg: "宽度固定，高度自适应，垂直居中"
+					},{
+						url: "../themes/default/images/photoframe/3.jpg",
+						width: 150,
+						height: 100,
+						msg: "宽高均小于相框宽高时，垂直水平居中",
+					}
+				]
+			});
+			$("#common3").photoframe({
+				nodes: [
+					{
+						url: "../themes/default/images/photoframe/1.jpg"
+					}
+				]
+			});
+			$("#common4").photoframe({nodes: []});
+
+			var i = 1;
+			$("a").click(function() {
+				$("#common4").photoframe("add", {
+					url: "../themes/default/images/photoframe/" + i + ".jpg",
+					msg: "第" + i + "张图"
+				});
+				i++;
+			});
+		});
+	</script>
+	<style type="text/css">
+		div[id] {
+			width: 312px;
+			height: 182px;
+			float: left;
+			margin: 5px;
+		}
+	</style>
+</head>
+<body class="easyui-layout">
+	<div region="center" border="false" style="padding: 5px;">
+		<div>
+			<h3>【相框】组件简介:</h3>
+			<ul style="padding-left: 20px;">
+				<li>组件大小：312 * 182</li>
+				<li>图片最大可视范围：300 * 150</li>
+				<li>默认图片将按原图宽高比例居中显示，亦可自定义图片宽高等img标签属性信息</li>
+				<li>默认点击图片可查看大图，亦可自定义图片点击事件</li>
+				<li>msg属性可设置图片描述信息</li>
+				<li>提供外部添加图片的方法</li>
+				<li>图片张数小于等于一时不显示切换图标</li>
+			</ul>
+		</div>
+		<div id="common1"></div>
+		<div id="common2"></div>
+		<div style="clear: left; padding-left: 5px;">
+			<a href="javascript:void(0);" class="easyui-linkbutton" type="rectangle">添加图片</a>
+		</div>
+		<div id="common4"></div>
+		<div id="common3"></div>
+	</div>
+</body>
+</html>
+
+

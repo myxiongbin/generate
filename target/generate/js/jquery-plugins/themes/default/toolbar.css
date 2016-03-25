@@ -1,0 +1,40 @@
+.toolbar-wrap {
+	height: 25px;
+	line-height: 25px;
+	overflow: hidden;
+}
+.toolbar-left, .toolbar-right {
+	height: 100%;
+}
+.toolbar-left {
+	float: left;
+}
+.toolbar-right {
+	float: right;
+}
+.toolbar-list {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+.toolbar-list > li {
+	list-style: none;
+	float: left;
+	line-height: 25px;
+	margin-right: 5px;
+	padding-left: 5px;
+}
+.toolbar-list > li > a {
+	color: #06c;
+	text-decoration: none;
+	padding-bottom: 1px;
+}
+.toolbar-list > li > a:hover {
+	text-decoration: underline;
+}
+.toolbar-icon > a {
+	padding-left: 18px;
+}
+.toolbar-line {
+	background: url("images/toolbar/fenge.bmp") -5px center no-repeat;
+}

@@ -1,0 +1,99 @@
+.toolmenu-wrap {
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+.tmbg-wrap {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 69px;
+}
+.tmbg-left, .tmbg-center, .tmbg-right {
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+} 
+.tmbg-left {
+	width: 23px;
+	left: 0;
+	background: url(images/toolmenu/select_86.png) no-repeat;
+}
+.tmbg-center {
+	left: 23px;
+	right: 23px;
+	background: url(images/toolmenu/select_87.png) repeat-x;
+}
+.tmbg-right {
+	width: 23px;
+	right: 0;
+	background: url(images/toolmenu/select_89.png) no-repeat;
+}
+.tmlink-wrap {
+	position: absolute;
+	left: 23px;
+	right: 23px;
+	height: 100%;	/* ??? */
+}
+.tmlink-top, .tmlink-bottom {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.tmlink-top {
+	bottom: 23px;
+	height: 83px;
+}
+.tmlink-top > a {
+	outline: none;
+	padding-left: 9px;
+	display: block;
+	float: left;
+	width: 71px;
+}
+.tmlink-top > a > img {
+	width: 63px;
+	border: none;
+	margin: 0 auto;
+}
+.tmlink-bottom {
+	height: 23px;
+	bottom: 0;
+}
+.text-link {
+	float: left;
+	width: 80px;
+	height: 23px;
+}
+.text-linkbg-left, .text-linkbg-center, .text-linkbg-right, .text-linkbg-center-over {
+	cursor: pointer;
+	float: left;
+	height: 19px;
+	margin-top: 2px;
+}
+.text-linkbg-left {
+	margin-left: 15px;
+	width: 5px;
+	background: url(images/toolmenu/selectbtn_lit_bg1.png) no-repeat;
+}
+.text-linkbg-center {
+	background: url(images/toolmenu/selectbtn_lit_bg2.png) repeat-x;
+	width: 40px;
+	color: #fff;
+	text-align: center;
+	line-height: 19px;
+}
+.text-linkbg-center-over {
+	background: url(images/toolmenu/selectbtn_lit_bg2.png) repeat-x;
+	width: 40px;
+	color: #fe690d;
+	text-align: center;
+	line-height: 19px;
+}
+.text-linkbg-right {
+	width: 6px;
+	background: url(images/toolmenu/selectbtn_lit_bg3.png) no-repeat;
+}

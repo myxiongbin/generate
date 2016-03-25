@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Editable Tree - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../libs/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../../libs/jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../../libs/jquery-easyui-comp.js"></script>
+	<script type="text/javascript" src="../../libs/json2.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#DcCaseFlowTree').tree({
+				root: {id: 0, text: '根节点', state:'open', attributes: {}},// 去除表示不需要root节点。自行修改  state: closed or open;
+				checkbox: false,
+				animate: true,
+				url: 'queryTreeByArgs.json',
+				useAjaxjson: true,
+				useAjaxjson_data_id_AttrName: '_ID',// 必填返回数据组装,：：主键名称，不能有点
+				useAjaxjson_data_text_AttrName: 'modelObj.seqId',// 必填返回数据组装，：：显示名称。
+				useAjaxjson_queryPara_superIdAttrName: 'modelObj.superId',//必填：：：superId名称
+				useAjaxjson_data_isNodeLeafAttrName: 'isLeaf_tree', //必填：：：是否为叶子节点
+				useAjaxjson_loadOverFunc: function(data){
+					alert("tree loaded done!!");
+				},
+				onClick:function(node){
+					alert(node.id+" "+node.text);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<h2>Editable Tree</h2>
+	<div class="demo-info" style="margin-bottom:10px">
+		<div class="demo-tip icon-tip"></div>
+		<div>Click the node to begin edit, press enter key to stop edit or esc key to cancel edit.</div>
+	</div>
+	
+	<ul id="DcCaseFlowTree" ></ul>
+</body>
+</html>
+
+

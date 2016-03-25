@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Border Layout - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<script type="text/javascript" src="../jquery-1.6.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	<script>
+		$(function(){
+			var p = $('body').layout('panel','west').panel({
+				onCollapse:function(){
+					alert('collapse');
+				}
+			});
+			setTimeout(function(){
+				$('body').layout('collapse','east');
+			},0);
+			$('#cc3').combo({
+				required:true,
+				editable:false
+			});
+		});
+		function comboResize(){
+			$('#cc3').combo('resize');
+		}
+	</script>
+</head>
+<body >
+<div  class="easyui-layout" fit="true" style="background:#000000;">
+	<div region="north" border="false" style="height:60px;">north region</div>
+	<div region="west" split="true" title="West" style="width:150px;padding:10px;">west content</div>
+	<div region="east" split="true" title="East" style="width:100px;padding:10px;">east region</div>
+	<div region="south" border="false" style="height:50px;background:#A9FACD;padding:10px;">
+	<input type="button" value="combo resize" onclick="comboResize();" />
+	south region</div>
+	<div region="center" title="Main Title">
+		<select id="cc3" widthAuto="true">
+	</div>
+	</div>
+</body>
+</html>
+
+

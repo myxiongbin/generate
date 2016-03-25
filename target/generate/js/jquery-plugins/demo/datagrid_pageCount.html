@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Complex DataGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../libs/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../../libs/jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../../libs/json2.js"></script>
+	
+	<script>
+		$(function(){
+			$('#test').datagrid({
+				useAjaxjson: true,
+				useAjaxjson_loadOverFunc:function(data){
+					alert(11);
+				},
+				
+				title:'SmUser信息',
+				iconCls:'icon-save',
+				fit: true,
+				nowrap: false,
+				striped: true,
+				idField:'_ID',
+				frozenColumns:[[
+	                {field:'ck',checkbox:true}
+				]],
+				columns:[[
+			        {title:'基本信息',colspan: 7 },
+					{field:'opt',title:'操作',width:280,align:'center', rowspan:2,
+						formatter:function(value,rec, index){
+							return '<a href="javascript:openDetailZone('+index+');" decorateWait="true" class="easyui-linkbutton" plain="true" iconCls="icon-add">详细信息</a>'
+							+'&nbsp;<a href="javascript:copyDataOpen('+index+')" decorateWait="true" class="easyui-linkbutton" plain="true" iconCls="icon-cut" >复制</a>'
+							+'&nbsp;<a href="javascript:updateDataOpen('+index+')" decorateWait="true" class="easyui-linkbutton" plain="true" iconCls="icon-cut" >修改</a>'
+							+'&nbsp;<a href="javascript:delPrompt('+index+')" decorateWait="true" class="easyui-linkbutton" plain="true" iconCls="icon-cancel" >删除</a>'
+							;
+						}
+					}
+				],[
+					{field:'seqId', title:'人员工号',width:100,
+						formatter:function(value,rec){
+							return rec.modelObj.seqId;
+						}
+					}   ,	
+					{field:'operNo', title:'人员工号',width:100}   ,	
+					{field:'loginName', title:'登录名',width:100,
+						formatter:function(value,rec){
+							return rec.modelObj.loginName;
+						}
+					}   ,	
+					{field:'isDel', title:'del',width:120}   ,	
+					{field:'realName', title:'realName',width:100
+					}   ,	
+					{field:'createTime', title:'创建时间',width:100,
+						formatter:function(value,rec){
+							return longDate2Str(rec.modelObj.createTime);
+						}
+					}   ,	
+					{field:'sex', title:'性别',width:120,
+						formatter:function(value,rec){
+							return '<span ddata="sex" dvalue="'+value+'"></span>';
+						}
+					}   ,	
+					{field:'telephone', title:'电话',width:120}   ,	
+					{field:'mobileTelephone', title:'移动电话',width:120} 	
+					
+					
+				]],
+				pagination:true,
+				rownumbers:true,
+				onDblClickRow:function(index,value){
+					onDblClickGridRow(index,value);
+				},
+				toolbar:[{
+					id:'btnadd',
+					text:'添加',
+					iconCls:'icon-add',
+					handler:function(){
+						createDataOpen();
+					}
+				},{
+					id:'btncut',
+					text:'删除',
+					iconCls:'icon-cancel',
+					handler:function(){
+						delPrompt();
+					}
+				}]
+			});
+		});
+		function resize(){
+			$('#test').datagrid('resize', {
+				width:700,
+				height:400
+			});
+		}
+		function getSelected(){
+			var selected = $('#test').datagrid('getSelected');
+			if (selected){
+				alert(selected.code+":"+selected.name+":"+selected.addr+":"+selected.col4);
+			}
+		}
+		function getSelections(){
+			var ids = [];
+			var rows = $('#test').datagrid('getSelections');
+			for(var i=0;i<rows.length;i++){
+				ids.push(rows[i].code);
+			}
+			alert(ids.join(':'));
+		}
+		function clearSelections(){
+			$('#test').datagrid('clearSelections');
+		}
+		function selectRow(){
+			$('#test').datagrid('selectRow',2);
+		}
+		function selectRecord(){
+			$('#test').datagrid('selectRecord','002');
+		}
+		function unselectRow(){
+			$('#test').datagrid('unselectRow',2);
+		}
+		function mergeCells(){
+			$('#test').datagrid('mergeCells',{
+				index:2,
+				field:'addr',
+				rowspan:2,
+				colspan:2
+			});
+		}
+
+		function query(){
+			$('#test').datagrid({
+				url: "pageCountByArgs.json",
+				queryParams: {}
+			});
+		}
+	</script>
+</head>
+<body>
+	<h2>Complex DataGrid</h2>
+	<div class="demo-info">
+		<div class="demo-tip icon-tip"></div>
+		<div>Click the button to do actions with datagrid.</div>
+	</div>
+	
+	<div style="margin:10px 0;">
+		<a href="#" onclick="getSelected()">GetSelected</a>
+		<a href="#" onclick="getSelections()">GetSelections</a>
+		<a href="#" onclick="selectRow()">SelectRow</a>
+		<a href="#" onclick="selectRecord()">SelectRecord</a>
+		<a href="#" onclick="unselectRow()">UnselectRow</a>
+		<a href="#" onclick="clearSelections()">ClearSelections</a>
+		<a href="#" onclick="resize()">Resize</a>
+		<a href="#" onclick="mergeCells()">MergeCells</a>
+		<a href="#" onclick="query()">查询</a>
+	</div>
+	
+	<table id="test"></table>
+	<table id="test2"></table>
+	
+</body>
+</html>
+
+

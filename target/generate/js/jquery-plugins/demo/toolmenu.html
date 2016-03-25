@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>toolmenu—底部菜单</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/portal.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/toolmenu.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/loginlayer.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../../upload/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-portal.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-toolmenu.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-loginlayer.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			// 底部菜单
+			$("#tool-menu").toolmenu({
+				list: [{
+					menuId: "1001",
+					src: "../themes/default/images/toolmenu/select_ico_239.png",
+					text: "登入",
+					handler: function(id) {
+						open();
+					}
+				},{
+					menuId: "1002",
+					src: "../themes/default/images/toolmenu/select_ico_241.png",
+					text: "设置",
+					handler: function(id) {
+						alert(id);
+					}
+				},{
+					menuId: "1003",
+					src: "../themes/default/images/toolmenu/select_ico_245.png",
+					text: "帮助",
+					handler: function(id) {
+						alert(id);
+					}
+				},{
+					menuId: "1004",
+					src: "../themes/default/images/toolmenu/select_ico_247.png",
+					text: "退出",
+					handler: function(id) {
+						alert(id);
+					}
+				}]
+			});
+		});
+		function open() {
+			$("#login-layer").loginlayer("open");
+		};
+		function close() {
+			$("#login-layer").loginlayer("close");
+		};
+	</script>
+	<style type="text/css">
+		#body-center {
+			background: teal;
+			border-top: 1px solid #99bbe8;
+			border-bottom: 1px solid #99bbe8;
+			filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',
+				startColorstr=#550000FF, endColorstr=#53FFFF00);
+			overflow: hidden;
+		}
+		#portal-list {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 130px;
+			left: 0;
+		}
+		#tool-menu {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 10px;
+			height: 120px;
+		}
+	</style>
+</head>
+<body class="easyui-layout" fit="true">
+	<div region="north" border="false" style="height: 70px;">north</div>
+	<div id="body-center" region="center" border="false">
+		<div id="tool-menu"></div>
+	</div>
+	<div region="south" border="false" style="height: 30px;">south</div>
+</body>
+</html>
+
+

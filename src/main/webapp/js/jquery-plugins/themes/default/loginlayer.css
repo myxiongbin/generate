@@ -1,0 +1,25 @@
+/* 遮罩层 */
+.ll-shade {
+	background: #000;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.6;
+	-moz-opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
+/* 主框架 */
+.ll-wrap {
+	background: url(images/loginlayer/login_bg_1_05.png) no-repeat;
+	width: 451px;
+	height: 234px;
+	overflow: hidden;
+	position: absolute;
+}
+
+.ll-content {
+	position: absolute;
+}

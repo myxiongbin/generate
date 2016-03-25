@@ -1,0 +1,71 @@
+.spm-wrap {width: 100%;height: 100%;overflow: hidden;}
+.spm-wrap ul, .spm-wrap li {margin: 0;padding: 0;list-style: none;}
+
+/* 导航菜单 */
+.spm-wrap-left .spm-nav {float: left;}
+.spm-wrap-right .spm-nav {float: right;}
+.spm-nav {
+	width: 33px;
+	overflow: auto;
+	text-align: center;
+	opacity: 0.8;
+	-moz-opacity: 0.8;
+	filter: alpha(opacity=80);
+	/* 以下滤镜解决IE下png图片出现黑色背景的情况 */
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled="true", sizingMethod="corp", src="");
+}
+
+.spm-navlist > li {width: 33px;height: 86px;overflow: hidden;}
+.spm-navlist > li > a {
+	outline: none;
+	display: block;
+	color: #0c3d6a;
+	text-decoration: none;
+	padding: 15px 5px 0px 10px;
+}
+.spm-navitem {
+	background: url("images/mapmenu/bg_tab_normal.png") no-repeat;
+}
+.spm-navitem-click {
+	font-weight: bold;
+	background: url("images/mapmenu/bg_tab_current.png") no-repeat;
+}
+
+/* 主菜单 */
+.spm-wrap-left .spm-main {margin-left: 33px;}
+.spm-wrap-right .spm-main {margin-right: 33px;}
+.spm-main {height: 100%;position: relative;background: #f8fcff;}
+
+.spm-main > div {position: absolute;left: 0;right: 0;}
+
+/* 标题 */
+.spm-main-title {top: 0;height: 0px;}
+
+/* 内容 */
+.spm-main-container {top: 0px;bottom: 0px;}
+.spm-main-container > div {display: none;width: 100%;height: 100%;}
+.spm-first {
+	cursor: pointer;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 25px;
+	margin-top: 1px;
+}
+.spm-first-normal {background: #fff url("images/mapmenu/bg_row.png") no-repeat;}
+.spm-first-click {background: #fff url("images/mapmenu/bg_row.png") 0 -35px no-repeat;}
+.spm-itemwrap {
+	display: none;
+	/*padding: 3px 5px;*/
+}
+.spm-itemwrap table {width: 100%;}
+.spm-itemwrap table td {
+	vertical-align: middle;
+	border-bottom: 1px dashed #ddd;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+}
+.spm-itemwrap table td input[type="checkbox"] {vertical-align: middle;margin-bottom: 7px;}
+
+/* 底部 */
+.spm-main-foot {bottom: 0;height: 0px;}/* 预留 */

@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Combo - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="../jquery-1.6.min.js"></script>
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	<script>
+		$(function(){
+			$('#sp input').click(function(){
+				var v = $(this).val();
+				var s = $(this).next('span').text();
+				//parent.hidenPanel();
+				var comboId="cc";
+				parent.$('#'+comboId).combo('setValue', v).combo('setText', s).combo('hidePanel');
+			});
+		});
+		function __onfocusMe(){
+			alert();
+		}
+	</script>
+</head>
+<body>
+	<h2>Custom Combo</h2>
+	<div class="demo-info" style="margin-bottom:10px">
+		<div class="demo-tip icon-tip"></div>
+		<div>Click the right arrow button to show drop down panel that can be filled with any content.</div>
+	</div>
+	<div id="sp" >
+	<input type="radio" name="lang" value="01"><span>Java</span><br/>
+	<input type="radio" name="lang" value="02"><span>C#</span><br/>
+	<input type="radio" name="lang" value="03"><span>Jav3333</span><br/>
+	<input type="radio" name="lang" value="04"><span>C#4444</span><br/>
+	</div>
+</body>
+</html>
+
+

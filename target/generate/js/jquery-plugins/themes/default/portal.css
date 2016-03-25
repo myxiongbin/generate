@@ -1,0 +1,66 @@
+/* 设置对象的样式 */
+.obj-style {
+	width: 103%!important;	/* 宽度超出屏幕显示范围，实现隐藏滚动条，如需显示则改为100% */
+	overflow-x: hidden!important;
+	overflow-y: auto!important;	/* 考虑父级元素设为hidden的问题，此处设为auto以便实现滚动效果 */
+}
+.portal-wrap {
+	overflow: auto;
+	margin: 0 auto;
+}
+dl, dt, dd {
+	margin: 0;
+	padding: 0;
+}
+.portal-wrap dl {
+	float: left;
+	width: 132px;
+	padding: 0 18px;
+	margin-top: 10px;
+	overflow: hidden;	
+}
+.portal-wrap dt {
+	cursor: pointer;
+	overflow: hidden;
+}
+.portal-wrap dd {
+	cursor: pointer;
+	position: relative;
+	height: 27px;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.portal-dd-left, .portal-dd-center, .portal-dd-right, .portal-dd-center-over {
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+.portal-dd-left {
+	background: url(images/portal/selectbtn_big_bg1.png) no-repeat;
+	left: 0;
+	width: 7px;
+}
+.portal-dd-center {
+	background: url(images/portal/selectbtn_big_bg2.png) repeat-x;
+	left: 7px;
+	right: 8px;
+	color: #fff;
+	text-align: center;
+	line-height: 27px;
+	overflow: hidden;
+}
+.portal-dd-center-over {	
+	background: url(images/portal/selectbtn_big_bg2.png) repeat-x;
+	left: 7px;
+	right: 8px;
+	color: #fe690d;
+	text-align: center;
+	line-height: 27px;
+	overflow: hidden;
+}
+.portal-dd-right {
+	background: url(images/portal/selectbtn_big_bg3.png) no-repeat;
+	right: 0;
+	width: 8px;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Workzone2 JQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<link rel="stylesheet" type="text/css" href="../themes/default/workzone.css">
+	<script type="text/javascript" src="../../common/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../common/json2.js"></script>
+
+	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../jquery-ajaxjson-plugin.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-comp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-workzone.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winp.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-winmess.js"></script>
+	<script type="text/javascript" src="../jquery-workbus-plugin.js"></script>
+	<script>
+		$(function(){
+			$('#demo2Tab').workzone({
+				iframeWorkzoneId: 'demo2Iframe',
+				nodes: [
+					{title: 'InitTitle-1', url: 'winp.html', menuId: 1001, haveClose: false},
+					{title: 'InitTitle-2', url: 'comp.html', menuId: 1002}
+				],
+				haveCloseAllIcon: true
+			});
+		});
+		function test() {
+			try{
+				$('body').layout('resize');
+			} catch(e) {}
+		}
+		function reload(tabId) {
+			$('#' + tabId).workzone('reload',{iframeWorkzoneId: 'demo2Iframe',
+				nodes: [
+					{title: 'ReloadTitle-1', url: 'winp.html', menuId: 1001},
+					{title: 'ReloadTitle-2', url: 'comp.html', menuId: 1002}
+				]
+			});
+		}
+		function open(tabId) {
+			var para = {
+				title: $('#title').val(),
+				url: $('#url').val(),
+				haveClose: $('#haveClose').val()
+			};
+			if($('#menuId').val() != '') {
+				para.menuId = $('#menuId').val(); 
+			}
+			$('#' + tabId).workzone('open', para);
+		}
+		function clickByIndex(tabId) {
+			$('#' + tabId).workzone('clickByIndex', $('#index').val());
+		}
+		function clickByTitle(tabId) {
+			$('#' + tabId).workzone('clickByTitle', $('#title').val());
+		}
+		function clickByMenuId(tabId) {
+			$('#' + tabId).workzone('clickByMenuId', $('#menuId').val());
+		}
+		function closeByIndex(tabId) {
+			$('#' + tabId).workzone('closeByIndex', $('#index').val());
+		}
+		function closeByTitle(tabId) {
+			$('#' + tabId).workzone('closeByTitle', $('#title').val());
+		}
+		function closeByMenuId(tabId) {
+			$('#' + tabId).workzone('closeByMenuId', $('#menuId').val());
+		}
+		function closeAll(tabId) {
+			$('#' + tabId).workzone('closeAll');
+		}
+		function getNode(tabId) {
+			$('#' + tabId).workzone('getCurrentClickTabNode');
+		}
+	</script>
+</head>
+<body class="easyui-layout">
+	<div region="north" border="false" style="overflow: hidden;">	
+	
+		<table>
+			<tr><td>Title:</td><td><input id="title" value="NewTitle-1"/></td></tr>
+			<tr><td>Index:</td><td><input id="index" value="1"/>按打开顺序从1开始递增</td></tr>
+			<tr><td>MenuId:</td><td><input id="menuId" value="1"/>初始化和reload的两个MenuId分别为1001、1002</td></tr>
+			<tr><td>URL:</td><td><input id="url" value="menu.html"/></td></tr>
+			<tr><td>HaveClose:</td><td>
+				<select id="haveClose">
+					<option value="true" selected="selected">true</option>
+					<option value="false">false</option>
+				</select>是否显示关闭按钮</td>
+			</tr>
+		</table>
+		
+		<a href="javascript:reload('demo2Tab')" class="easyui-linkbutton">reload</a>
+		<a href="javascript:open('demo2Tab')" class="easyui-linkbutton">open</a>
+		<a href="javascript:clickByIndex('demo2Tab')" class="easyui-linkbutton">clickByIndex</a>
+		<a href="javascript:clickByTitle('demo2Tab')" class="easyui-linkbutton">clickByTitle</a>
+		<a href="javascript:clickByMenuId('demo2Tab')" class="easyui-linkbutton">clickByMenuId</a>
+		<a href="javascript:closeByIndex('demo2Tab')" class="easyui-linkbutton">closeByIndex</a>
+		<a href="javascript:closeByTitle('demo2Tab')" class="easyui-linkbutton">closeByTitle</a>
+		<a href="javascript:closeByMenuId('demo2Tab')" class="easyui-linkbutton">closeByMenuId</a>
+		<a href="javascript:closeAll('demo2Tab')" class="easyui-linkbutton">closeAll</a>
+		<a href="javascript:getNode('demo2Tab')" class="easyui-linkbutton">查看</a>
+		
+		<div id="demo2Tab" style="height: 27px;"></div>
+		
+	</div>
+	
+	<div id="demo2Iframe" region="center" border="false">
+		
+	</div>
+</body>
+</html>
+
+
