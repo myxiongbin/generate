@@ -5,11 +5,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 
 public class FileNIOCommon {
 	
@@ -21,9 +24,9 @@ public class FileNIOCommon {
 	 * 读取文件
 	 * @param filePath	文件路径
 	 * @return
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-	public static byte[] readFileToByte(String filePath) throws IOException{
+	public static byte[] readFileToByte(String filePath) throws Exception{
 		File file = new File(filePath);
 		FileInputStream in = new FileInputStream(file);
 		FileChannel channel = in.getChannel();
@@ -34,6 +37,8 @@ public class FileNIOCommon {
 			data[index++] = mapped.get();
 		}
 
+//		mapped.clear();
+		clean(mapped);
 		channel.close();
 		in.close();
 		return data;
@@ -45,7 +50,7 @@ public class FileNIOCommon {
 	 * @return
 	 * @throws IOException
 	 */
-	public static String readFileToString(String filePath) throws IOException{
+	public static String readFileToString(String filePath) throws Exception{
 		return new String(readFileToByte(filePath));
 	}
 	
@@ -56,7 +61,7 @@ public class FileNIOCommon {
 	 * @return
 	 * @throws IOException
 	 */
-	public static String readFileToString(String filePath,String encoding) throws IOException{
+	public static String readFileToString(String filePath,String encoding) throws Exception{
 		byte[] data = readFileToByte(filePath);
 		Charset charset = Charset.forName(encoding);
 		CharsetDecoder decoder = charset.newDecoder();
@@ -130,5 +135,21 @@ public class FileNIOCommon {
 	 */
 	public static void writeStringToFile(String path,String content,boolean isCoverage) throws IOException{
 		writeByteToFile(path,content.getBytes(),isCoverage);
+	}
+	
+	public static void clean(final Object buffer) throws Exception {
+		AccessController.doPrivileged(new PrivilegedAction() {
+			public Object run() {
+	            try {
+	               Method getCleanerMethod = buffer.getClass().getMethod("cleaner",new Class[0]);
+	               getCleanerMethod.setAccessible(true);
+	               sun.misc.Cleaner cleaner =(sun.misc.Cleaner)getCleanerMethod.invoke(buffer,new Object[0]);
+	               cleaner.clean();
+	            } catch(Exception e) {
+	               e.printStackTrace();
+	            }
+	            return null;
+            }
+		});
 	}
 }

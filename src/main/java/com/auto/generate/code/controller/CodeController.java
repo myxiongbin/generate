@@ -24,7 +24,6 @@ public class CodeController extends BaseController {
 	
 	@Autowired
 	private MySqlService mySqlService;
-	
 	@Autowired
 	private CodeComponent codeComponent;
 	
@@ -40,7 +39,7 @@ public class CodeController extends BaseController {
 	 * @date 2016年3月4日 下午11:01:26  
 	 * @author xiongbin
 	 */
-	@RequestMapping(value="query/connect", produces="application/json;charset=utf-8")
+	@RequestMapping(value="connect", produces="application/json;charset=utf-8")
 	@ResponseBody
 	public String connect(String driverClassName, String url, String userName,String password) {
 		ApiResult<String> result = new ApiResult<String>();
@@ -68,15 +67,15 @@ public class CodeController extends BaseController {
 	 * @date 2016年3月4日 下午11:03:59  
 	 * @author xiongbin
 	 */
-	@RequestMapping(value="query/tableName", produces="application/json;charset=utf-8")
+	@RequestMapping(value="query/all/tableName", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String queryTableName(String tableSchema) {
+	public String queryAllTableName(String tableSchema) {
 		ApiResult<List<MySql>> result = new ApiResult<List<MySql>>();
 		if(StringUtils.isBlank(tableSchema)){
 			return result.toJSONString(-1, "参数tableSchema不能为空");
 		}
 		
-		List<MySql> list = mySqlService.queryTableName(tableSchema);
+		List<MySql> list = mySqlService.queryAllTableName(tableSchema);
 		
 		return result.toJSONString(0, "success" , list);
 	}
@@ -99,5 +98,19 @@ public class CodeController extends BaseController {
 		}
 		
 		return codeComponent.newConfigNameXml(configName);
+	}
+	
+	/**
+	 * 获取配置文件
+	 * @Description: (方法职责详细描述,可空)  
+	 * @Title: getConfig 
+	 * @return
+	 * @date 2016年6月27日 下午6:23:35  
+	 * @author xiongbin
+	 */
+	@RequestMapping(value="get/config", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String getConfig() {
+		return codeComponent.getNameConfigXml();
 	}
 }

@@ -23,7 +23,6 @@ public class MySqlDaoImpl implements MySqlDao{
 
 	@Autowired
 	private BasicDataSource basicDataSource;
-	
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -36,8 +35,8 @@ public class MySqlDaoImpl implements MySqlDao{
 	}
 	
 	@Override
-	public List<MySql> queryTableName(String tableSchema) {
-		return sqlSession.getMapper(MySqlMapper.class).queryTableName(tableSchema);
+	public List<MySql> queryAllTableName(String tableSchema) {
+		return sqlSession.getMapper(MySqlMapper.class).queryAllTableName(tableSchema);
 	}
 
 	

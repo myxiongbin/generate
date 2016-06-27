@@ -25,6 +25,8 @@
 					}
 				});
 				*/
+				
+				refreshConfig();
 
 				$('#div_configuration').combobox({
 					width:200,
@@ -87,7 +89,7 @@
 				_log("新增配置文件:{configName:{}}",newCName);
 				$.ajax({ type: "POST",//请求方式，get或post
  					url: ADD_CONFIG,
-					data: "configName=" + newCName,
+					data: {"configName":newCName},
 					dataType:'json',
 					timeout : 3000,
 					error: function(XmlHttpRequest,textStatus,errorThrown){
@@ -112,14 +114,31 @@
 			}
 			//刷新配置文件
 			function refreshConfig(){
-				var url = path + '/RapGerData/getNameConfig.xhtml';
-				$.ajaxjson.post({url : url,
-			       	async : false,   
-					successFunc: function(ret){
-						var value = $('#div_configuration').combobox('getValue');
-						$('#div_configuration').combobox('loadData',ret);
-						$('#div_configuration').combobox('setValue',value);
-					}
+				_log("获取配置文件");
+				$.ajax({ type: "POST",//请求方式，get或post
+ 					url: GET_CONFIG,
+					dataType:'json',
+					timeout : 3000,
+					error: function(XmlHttpRequest,textStatus,errorThrown){
+						_log('获取配置文件失败:' + errorThrown);
+						alertMsg(errorThrown);
+					},
+					success: function(data){
+						_log('获取配置文件返回数据:' +JSON.stringify(data));
+						var code = data.code;
+						if(code == 0){
+							var value = $('#div_configuration').combobox('getValue');
+							$('#div_configuration').combobox('loadData',data.data);
+							$('#div_configuration').combobox('setValue',value);
+						}else{
+							alertMsg(data.message)
+						}
+					},
+			　　		complete : function(XMLHttpRequest,status){
+			　　			if(status=='timeout'){
+				　　　　		alertMsg('访问超时');
+			　　　　		}
+			　　		}
 				});
 			}
 			//显示提示

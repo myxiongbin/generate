@@ -24,8 +24,8 @@ public class MySqlServiceImpl implements MySqlService {
 	}
 
 	@Override
-	public List<MySql> queryTableName(String tableSchema) {
-		return mySqlDao.queryTableName(tableSchema);
+	public List<MySql> queryAllTableName(String tableSchema) {
+		return mySqlDao.queryAllTableName(tableSchema);
 	}
 
 }

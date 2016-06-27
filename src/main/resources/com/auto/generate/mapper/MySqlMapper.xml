@@ -5,7 +5,8 @@
     	<result column="table_name" property="tableName" jdbcType="VARCHAR" />
   	</resultMap>
   	
-  	<select id="queryTableName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  	<!-- 查询所有库表  -->
+  	<select id="queryAllTableName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     	select 
     		table_name 
     	from 

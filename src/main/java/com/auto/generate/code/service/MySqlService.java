@@ -23,11 +23,11 @@ public interface MySqlService {
 	/**
 	 * 查询所有库表
 	 * @Description: (方法职责详细描述,可空)  
-	 * @Title: queryTableName 
+	 * @Title: queryAllTableName 
 	 * @param tableSchema			库名
 	 * @return
 	 * @date 2016年3月4日 下午10:30:53  
 	 * @author xiongbin
 	 */
-	List<MySql> queryTableName(String tableSchema);
+	List<MySql> queryAllTableName(String tableSchema);
 }

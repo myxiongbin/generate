@@ -1,17 +1,14 @@
 package com.auto.generate.code.controller.component;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.auto.generate.base.ApiResult;
+import com.auto.generate.code.model.ConfigFiles;
 import com.auto.generate.code.model.DataBase;
 import com.auto.generate.utils.file.FileNIOCommon;
 import com.auto.generate.utils.file.PropertiesUtil;
@@ -40,6 +37,7 @@ public class CodeComponent {
 	 * @date 2016年3月8日 下午6:13:14  
 	 * @author xiongbin
 	 */
+	@SuppressWarnings("unchecked")
 	public String newConfigNameXml(String newConfigName) {
 		ApiResult<String> result = new ApiResult<String>();
 		
@@ -58,15 +56,16 @@ public class CodeComponent {
 				List<DataBase> dataBaseList = new ArrayList<DataBase>(); 
 				DataBase dataBase = DataBase.getMaySql(newConfigName);
 				dataBaseList.add(dataBase);
-				boolean flag = this.createConfigXml(JSON.toJSONString(dataBaseList),newConfigFile.getPath() 
+				boolean flag = this.createConfigXml(dataBaseList,newConfigFile.getPath() 
 																			+ File.separator + newConfigName + "_map"+ ".xml");
+				
 				if(flag){
 					if(!nameConfigFile.exists()){
 						nameConfigFile.createNewFile();
-						JSONArray nameConfigList = this.getDefaultConfigList(-1,"-----请选择-----",true);
-						JSONObject nameConfig = this.getDefaultConfig(0,newConfigName,false);
+						List<ConfigFiles> nameConfigList = ConfigFiles.getDefaultConfigList(-1,"-----请选择-----",true);
+						ConfigFiles nameConfig = ConfigFiles.getDefaultConfig(0,newConfigName,false);
 						nameConfigList.add(nameConfig);
-						flag = this.createConfigXml(nameConfigList.toJSONString(),nameConfigFile.getPath());
+						flag = this.createConfigXml(nameConfigList,nameConfigFile.getPath());
 						if(flag){
 							logger.info("创建配置文件xml成功");
 						}else{
@@ -77,12 +76,13 @@ public class CodeComponent {
 						logger.info("配置文件xml已存在,更新数据");
 						
 						XStream localXStream = new XStream();
-						JSONArray nameConfigList = JSON.parseArray((String)localXStream.fromXML(nameConfigFile.getPath()));
-						JSONObject jsonObject = JSON.parseObject(nameConfigList.getString(nameConfigList.size()-1));
-						Integer id = jsonObject.getInteger("id");
-						JSONObject newNameConfig = this.getDefaultConfig(++id,newConfigName,false);
+						String xmlString = FileNIOCommon.readFileToString(nameConfigFile.getPath());
+						List<ConfigFiles> nameConfigList = (List<ConfigFiles>)(localXStream.fromXML((xmlString)));
+						ConfigFiles configFiles = nameConfigList.get(nameConfigList.size()-1);
+						Integer id = configFiles.getId();
+						ConfigFiles newNameConfig = ConfigFiles.getDefaultConfig(++id,newConfigName,false);
 						nameConfigList.add(newNameConfig);
-						flag = this.createConfigXml(nameConfigList.toJSONString(),nameConfigFile.getPath());
+						flag = this.createConfigXml(nameConfigList,nameConfigFile.getPath());
 						if(flag){
 							logger.info("更新配置文件xml数据成功");
 						}else{
@@ -106,88 +106,55 @@ public class CodeComponent {
 		return result.toJSONString(0, "创建成功");
 	}
 	
-	
-	public JSONArray getNameConfigXml(String configPath) {
-//		JSONObject json = new JSONObject();
-//		json.put("id", -1);
-//		json.put("text", "-----请选择-----");
-//		json.put("selected", true);
-//		
-//		JSONArray list = new JSONArray();
-//		list.add(json);
-//		
-//		File file = new File(configPath);
-//		if(file.exists()){
-//			XStream localXStream = new XStream();
-//			localXStream.fromXML(file.);
-//			jsonArray = JSONArray.fromObject(list);
-//			logger.info("读取配置文件成功");
-//		}else{
-//			logger.info("配置文件未存在");
-//		}
-		
-		return null;
-	}
-	
 	/**
-	 * 获取默认配置
+	 * 获取配置文件
 	 * @Description: (方法职责详细描述,可空)  
-	 * @Title: getDefaultConfig 
-	 * @param id 			显示ID
-	 * @param text 			显示文本
-	 * @param selected 		是否默认选择
+	 * @Title: getNameConfigXml 
+	 * @param configPath
 	 * @return
-	 * @date 2016年3月8日 下午12:04:24  
+	 * @date 2016年6月27日 下午6:22:45  
 	 * @author xiongbin
 	 */
-	private JSONObject getDefaultConfig(Integer id,String text,boolean selected){
-		JSONObject json = new JSONObject();
-		json.put("id", -1);
-		json.put("text", text);
-		json.put("selected", selected);
-		
-		return json;
-	}
-	
-	/**
-	 * 获取默认配置
-	 * @Description: (方法职责详细描述,可空)  
-	 * @Title: getDefaultConfigList 
-	 * @param id 			显示ID
-	 * @param text 			显示文本
-	 * @param selected 		是否默认选择
-	 * @return
-	 * @date 2016年3月8日 下午12:04:24  
-	 * @author xiongbin
-	 */
-	private JSONArray getDefaultConfigList(Integer id,String text,boolean selected){
-		JSONObject json = new JSONObject();
-		json.put("id", -1);
-		json.put("text", text);
-		json.put("selected", selected);
-		
-		JSONArray list = new JSONArray();
-		list.add(json);
-		
-		return list;
+	@SuppressWarnings("unchecked")
+	public String getNameConfigXml() {
+		ApiResult<List<ConfigFiles>> result = new ApiResult<List<ConfigFiles>>();
+		try {
+			if(!nameConfigFile.exists()){
+				return result.toJSONString(0, "",ConfigFiles.getDefaultConfigList(-1,"-----请选择-----",true));
+			}
+			
+			XStream localXStream = new XStream();
+			String xmlString = FileNIOCommon.readFileToString(nameConfigFile.getPath());
+			List<ConfigFiles> nameConfigList = (List<ConfigFiles>)(localXStream.fromXML((xmlString)));
+			
+			if(null == nameConfigList || nameConfigList.size() < 1){
+				nameConfigList = ConfigFiles.getDefaultConfigList(-1,"-----请选择-----",true);
+			}
+			
+			return result.toJSONString(0, "",nameConfigList);
+		} catch (Exception e) {
+			logger.error(e);
+			return result.toJSONString(-1, "获取配置文件失败:" + e.getMessage());
+		}
 	}
 	
 	/**
 	 * 创建xml文件
 	 * @Description: (方法职责详细描述,可空)  
 	 * @Title: createConfigXml 
-	 * @param model		集合列表
-	 * @param path		创建路径
+	 * @param list			集合列表
+	 * @param path			创建路径
 	 * @return
-	 * @date 2016年3月8日 下午2:34:39  
+	 * @date 2016年6月27日 下午2:56:27  
 	 * @author xiongbin
+	 * @param <T>
 	 */
-	private boolean createConfigXml(String model,String path){
-	    try {
+	private <T> boolean createConfigXml(List<T> list, String path) {
+		try {
 			XStream localXStream = new XStream();
-			FileNIOCommon.writeStringToFile(path, localXStream.toXML(model), false);
+			FileNIOCommon.writeStringToFile(path, localXStream.toXML(list), false);
 			return true;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error("创建配置文件失败:" + e.getMessage(), e);
 			return false;
 		}
