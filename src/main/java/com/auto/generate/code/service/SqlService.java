@@ -5,7 +5,7 @@ import java.util.List;
 import com.auto.generate.code.model.MySql;
 
 
-public interface MySqlService {
+public interface SqlService {
 	
 	/**
 	 * 连接数据库

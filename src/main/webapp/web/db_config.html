@@ -13,7 +13,8 @@
 			var gdataBaseMap = null;	//数据库配置信息
 			var gdataBaseMap_modified = false;
 
-			var json = [{'id':0,'text':'oracle'},{'id':1,'text':'sqlserver'}];
+			//var json = [{'id':0,'text':'oracle'},{'id':1,'text':'sqlserver'}];
+			var json = [{'id':0,'text':'mysql'}];
 			$(function(){
 				$('#dbConfigForm\\:dbType').combobox({
 					width:100,
@@ -39,6 +40,16 @@
 									'dataBaseName':'oracle',
 									'username':'base_system',
 									'password':'base_system'
+							};
+							$('#dbConfigForm').setJSON({dbConfigForm:ret});
+						}else if($('#dbConfigForm\\:dbType').combobox('getText') == 'mysql'){
+							var ret = {
+									'dbType':'mysql',
+									'url':'192.168.125.188:3306',
+									'driver':'com.mysql.jdbc.Driver',
+									'dataBaseName':'caitu99',
+									'username':'root',
+									'password':'mysql'
 							};
 							$('#dbConfigForm').setJSON({dbConfigForm:ret});
 						}

@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.auto.generate.base.ApiResult;
 import com.auto.generate.base.BaseController;
 import com.auto.generate.code.controller.component.CodeComponent;
+import com.auto.generate.code.model.DataBase;
 import com.auto.generate.code.model.MySql;
-import com.auto.generate.code.service.MySqlService;
+import com.auto.generate.code.service.SqlService;
 
 @Controller
 @RequestMapping("/auto/generate/code")
@@ -23,7 +24,7 @@ public class CodeController extends BaseController {
 	private final static Logger logger = LoggerFactory.getLogger(CodeController.class);
 	
 	@Autowired
-	private MySqlService mySqlService;
+	private SqlService mySqlService;
 	@Autowired
 	private CodeComponent codeComponent;
 	
@@ -132,5 +133,30 @@ public class CodeController extends BaseController {
 		}
 		
 		return codeComponent.readConfig(name);
+	}
+	
+	
+	@RequestMapping(value="query/all/table", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String queryAllTable(DataBase dataBase) {
+		ApiResult<String> result = new ApiResult<String>();
+		if(null == dataBase){
+			return result.toJSONString(-1, "参数不能为空");
+		}else if(StringUtils.isBlank(dataBase.getUrl())){
+			return result.toJSONString(-1, "参数url不能为空");
+		}else if(StringUtils.isBlank(dataBase.getDriver())){
+			return result.toJSONString(-1, "参数driver不能为空");
+		}else if(StringUtils.isBlank(dataBase.getDataBaseName())){
+			return result.toJSONString(-1, "参数dataBaseName不能为空");
+		}else if(StringUtils.isBlank(dataBase.getUsername())){
+			return result.toJSONString(-1, "参数username不能为空");
+		}else if(StringUtils.isBlank(dataBase.getPassword())){
+			return result.toJSONString(-1, "参数password不能为空");
+		}else if(StringUtils.isBlank(dataBase.getTableNameList())){
+			return result.toJSONString(-1, "参数tableNameList不能为空");
+		}
+		
+//		return codeComponent.readConfig(name);
+		return null;
 	}
 }

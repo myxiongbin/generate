@@ -4,11 +4,14 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.auto.generate.base.ApiResult;
 import com.auto.generate.code.model.ConfigFiles;
 import com.auto.generate.code.model.DataBase;
+import com.auto.generate.code.model.MySql;
+import com.auto.generate.code.service.SqlService;
 import com.auto.generate.utils.file.FileNIOCommon;
 import com.auto.generate.utils.file.PropertiesUtil;
 import com.thoughtworks.xstream.XStream;
@@ -26,6 +29,9 @@ public class CodeComponent {
 	/** 项目列表文件名 */
 	private final static String nameConfig = PropertiesUtil.getContexrtParam("nameConfig");
 	private final static File nameConfigFile = new File(projectFile.getPath() + File.separator + nameConfig);
+	
+	@Autowired
+	private SqlService sqlService;
 	
 	/**
 	 * 新建配置文件
@@ -166,6 +172,22 @@ public class CodeComponent {
 			logger.error("读取配置文件信息出错:" + e.getMessage(),e);
 			return result.toJSONString(-1, "读取配置文件信息出错:" + e.getMessage());
 		}
+	}
+	
+	public String queryAllTable(DataBase dataBase) {
+		ApiResult<DataBase> result = new ApiResult<DataBase>();
+		
+		try {
+			sqlService.connect(dataBase.getDriver(), dataBase.getUrl(), dataBase.getUsername(), dataBase.getPassword());
+		} catch (Exception e) {
+			logger.error("数据库连接不上,driverClassName:" + dataBase.getDriver() + ",url:" + dataBase.getUrl() + 
+											",userName:" + dataBase.getUsername() + ",password:" + dataBase.getPassword(),e);
+			return result.toJSONString(-1, "数据库连接不上:" + e.getMessage());
+		}
+		
+		List<MySql> list = sqlService.queryAllTableName(dataBase.getDataBaseName());
+		
+		return null;
 	}
 	
 	/**

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.auto.generate.code.dao.MySqlDao;
 import com.auto.generate.code.model.MySql;
-import com.auto.generate.code.service.MySqlService;
+import com.auto.generate.code.service.SqlService;
 
 @Service
-public class MySqlServiceImpl implements MySqlService {
+public class MySqlServiceImpl implements SqlService {
 
 	private Logger log = Logger.getLogger(getClass());
 	
