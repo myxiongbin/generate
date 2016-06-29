@@ -101,7 +101,7 @@ public class CodeController extends BaseController {
 	}
 	
 	/**
-	 * 获取配置文件
+	 * 获取全部配置文件
 	 * @Description: (方法职责详细描述,可空)  
 	 * @Title: getConfig 
 	 * @return
@@ -112,5 +112,25 @@ public class CodeController extends BaseController {
 	@ResponseBody
 	public String getConfig() {
 		return codeComponent.getNameConfigXml();
+	}
+	
+	/**
+	 * 读取配置文件信息
+	 * @Description: (方法职责详细描述,可空)  
+	 * @Title: readConfig 
+	 * @param name	配置文件名称
+	 * @return
+	 * @date 2016年6月28日 下午4:49:38  
+	 * @author xiongbin
+	 */
+	@RequestMapping(value="read/config", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String readConfig(String name) {
+		ApiResult<String> result = new ApiResult<String>();
+		if(StringUtils.isBlank(name)){
+			return result.toJSONString(-1, "参数name不能为空");
+		}
+		
+		return codeComponent.readConfig(name);
 	}
 }

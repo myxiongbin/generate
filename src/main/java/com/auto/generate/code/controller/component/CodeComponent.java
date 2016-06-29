@@ -1,7 +1,6 @@
 package com.auto.generate.code.controller.component;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -53,10 +52,10 @@ public class CodeComponent {
 			if(!newConfigFile.exists()){
 				newConfigFile.mkdirs();
 				logger.info("创建配置文件夹成功");
-				List<DataBase> dataBaseList = new ArrayList<DataBase>(); 
+//				List<DataBase> dataBaseList = new ArrayList<DataBase>(); 
 				DataBase dataBase = DataBase.getMaySql(newConfigName);
-				dataBaseList.add(dataBase);
-				boolean flag = this.createConfigXml(dataBaseList,newConfigFile.getPath() 
+//				dataBaseList.add(dataBase);
+				boolean flag = this.createConfigXml(dataBase,newConfigFile.getPath() 
 																			+ File.separator + newConfigName + "_map"+ ".xml");
 				
 				if(flag){
@@ -137,6 +136,37 @@ public class CodeComponent {
 			return result.toJSONString(-1, "获取配置文件失败:" + e.getMessage());
 		}
 	}
+
+	/**
+	 * 读取配置文件信息
+	 * @Description: (方法职责详细描述,可空)  
+	 * @Title: readConfig 
+	 * @param name		配置文件名称
+	 * @return
+	 * @date 2016年6月28日 下午4:48:52  
+	 * @author xiongbin
+	 */
+	public String readConfig(String name) {
+		ApiResult<DataBase> result = new ApiResult<DataBase>();
+		
+		try {
+			File file = new File(projectFile.getPath() + File.separator + name + File.separator + name + "_map" + ".xml");
+			
+			if(file.exists()){
+				XStream localXStream = new XStream();
+				String xmlString = FileNIOCommon.readFileToString(file.getPath());
+				DataBase dataBase = (DataBase)localXStream.fromXML(xmlString);
+				
+				return result.toJSONString(0, "",dataBase);
+			}else{
+				logger.info("配置文件未存在");
+				return result.toJSONString(-1, "配置文件未存在");
+			}
+		} catch (Exception e) {
+			logger.error("读取配置文件信息出错:" + e.getMessage(),e);
+			return result.toJSONString(-1, "读取配置文件信息出错:" + e.getMessage());
+		}
+	}
 	
 	/**
 	 * 创建xml文件
@@ -153,6 +183,28 @@ public class CodeComponent {
 		try {
 			XStream localXStream = new XStream();
 			FileNIOCommon.writeStringToFile(path, localXStream.toXML(list), false);
+			return true;
+		} catch (Exception e) {
+			logger.error("创建配置文件失败:" + e.getMessage(), e);
+			return false;
+		}
+	}
+	
+	/**
+	 * 创建xml文件
+	 * @Description: (方法职责详细描述,可空)  
+	 * @Title: createConfigXml 
+	 * @param obj			
+	 * @param path			创建路径
+	 * @return
+	 * @date 2016年6月27日 下午2:56:27  
+	 * @author xiongbin
+	 * @param <T>
+	 */
+	private <T> boolean createConfigXml(T obj, String path) {
+		try {
+			XStream localXStream = new XStream();
+			FileNIOCommon.writeStringToFile(path, localXStream.toXML(obj), false);
 			return true;
 		} catch (Exception e) {
 			logger.error("创建配置文件失败:" + e.getMessage(), e);
