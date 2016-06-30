@@ -333,8 +333,10 @@
 				formJsonData.tableNameList = '';
 				gdataBaseMap = formJsonData;
 				
+				_log("11:" + JSON.stringify(formJsonData));
+				
 				$('#dbConfigForm\\:tableNameList').combogrid({ 
-					url: path + '/RapGerData/queryAllTable.xhtml',
+					url: QUERY_ALL_TABLE,
 					queryParams: formJsonData,
 					useAjaxjson: true,
 					useAjaxjson_total_attrName: 'content',// 必填返回数据组装
@@ -358,9 +360,9 @@
 					rownumbers:true,
 					loadMsg:"Processing, please wait ...",
 					columns:[[
-						{field:'sqlName',title:'表名',width:170,align:'center',
+						{field:'name',title:'表名',width:170,align:'center',
 							formatter:function(value,rec){
-								return rec.sqlName;
+								return rec.name;
 							}
 						},
 						{field:'remark',title:'库备注',width:200,align:'center',
