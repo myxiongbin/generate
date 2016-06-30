@@ -118,7 +118,7 @@ public class DataBase implements Serializable{
 	
 	public static DataBase getMaySql(String prjName){
 		DataBase dataBase = new DataBase();
-		dataBase.setUrl("192.168.125.188:3306");
+		dataBase.setUrl("192.168.25.188:3306");
 		dataBase.setDriver("com.mysql.jdbc.Driver");
 		dataBase.setUsername("root");
 		dataBase.setPassword("mysql");

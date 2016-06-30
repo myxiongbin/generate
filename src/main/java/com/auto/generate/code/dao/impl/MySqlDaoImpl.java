@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.auto.generate.code.dao.MySqlDao;
-import com.auto.generate.code.model.MySql;
+import com.auto.generate.code.model.Table;
 import com.auto.generate.mapper.MySqlMapper;
 
 /** 
@@ -35,7 +35,7 @@ public class MySqlDaoImpl implements MySqlDao{
 	}
 	
 	@Override
-	public List<MySql> queryAllTableName(String tableSchema) {
+	public List<Table> queryAllTableName(String tableSchema) {
 		return sqlSession.getMapper(MySqlMapper.class).queryAllTableName(tableSchema);
 	}
 

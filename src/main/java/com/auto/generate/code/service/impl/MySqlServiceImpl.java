@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.auto.generate.code.dao.MySqlDao;
-import com.auto.generate.code.model.MySql;
+import com.auto.generate.code.model.Table;
 import com.auto.generate.code.service.SqlService;
 
-@Service
+@Service("mysql")
 public class MySqlServiceImpl implements SqlService {
 
 	private Logger log = Logger.getLogger(getClass());
@@ -19,13 +19,14 @@ public class MySqlServiceImpl implements SqlService {
 	private MySqlDao mySqlDao;
 
 	@Override
-	public void connect(String driverClassName, String url, String userName,String password) {
+	public void connect(String dbType,String driverClassName, String url, String userName,String password,String dataBaseName) {
+		//jdbc:mysql://192.168.25.188:3306/caitu99
+		url = "jdbc:" + dbType + "://" + url + "/" + dataBaseName;
 		mySqlDao.connect(driverClassName, url, userName, password);
 	}
 
 	@Override
-	public List<MySql> queryAllTableName(String tableSchema) {
+	public List<Table> queryAllTableName(String dbType,String tableSchema) {
 		return mySqlDao.queryAllTableName(tableSchema);
 	}
-
 }

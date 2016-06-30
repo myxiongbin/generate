@@ -6,7 +6,7 @@ package com.auto.generate.code.dao;
 
 import java.util.List;
 
-import com.auto.generate.code.model.MySql;
+import com.auto.generate.code.model.Table;
 
 
 
@@ -28,5 +28,5 @@ public interface MySqlDao extends SqlDao{
 	 * @date 2016年3月4日 下午10:30:53  
 	 * @author xiongbin
 	 */
-	List<MySql> queryAllTableName(String tableSchema);
+	List<Table> queryAllTableName(String tableSchema);
 }

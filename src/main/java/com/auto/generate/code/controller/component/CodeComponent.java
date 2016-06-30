@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.auto.generate.base.ApiResult;
+import com.auto.generate.code.adapt.SqlAdapt;
 import com.auto.generate.code.model.ConfigFiles;
 import com.auto.generate.code.model.DataBase;
-import com.auto.generate.code.model.MySql;
-import com.auto.generate.code.service.SqlService;
+import com.auto.generate.code.model.Table;
 import com.auto.generate.utils.file.FileNIOCommon;
 import com.auto.generate.utils.file.PropertiesUtil;
 import com.thoughtworks.xstream.XStream;
@@ -31,7 +31,7 @@ public class CodeComponent {
 	private final static File nameConfigFile = new File(projectFile.getPath() + File.separator + nameConfig);
 	
 	@Autowired
-	private SqlService sqlService;
+	private SqlAdapt sqlAdapt;
 	
 	/**
 	 * 新建配置文件
@@ -174,20 +174,30 @@ public class CodeComponent {
 		}
 	}
 	
+	/**
+	 * 查询所有库表
+	 * @Description: (方法职责详细描述,可空)  
+	 * @Title: queryAllTable 
+	 * @param dataBase
+	 * @return
+	 * @date 2016年6月30日 上午11:38:15  
+	 * @author xiongbin
+	 */
 	public String queryAllTable(DataBase dataBase) {
-		ApiResult<DataBase> result = new ApiResult<DataBase>();
+		ApiResult<List<Table>> result = new ApiResult<List<Table>>();
 		
 		try {
-			sqlService.connect(dataBase.getDriver(), dataBase.getUrl(), dataBase.getUsername(), dataBase.getPassword());
+			sqlAdapt.connect(dataBase.getDbType(),dataBase.getDriver(), dataBase.getUrl(), 
+											dataBase.getUsername(), dataBase.getPassword(),dataBase.getDataBaseName());
 		} catch (Exception e) {
 			logger.error("数据库连接不上,driverClassName:" + dataBase.getDriver() + ",url:" + dataBase.getUrl() + 
 											",userName:" + dataBase.getUsername() + ",password:" + dataBase.getPassword(),e);
 			return result.toJSONString(-1, "数据库连接不上:" + e.getMessage());
 		}
 		
-		List<MySql> list = sqlService.queryAllTableName(dataBase.getDataBaseName());
+		List<Table> list = sqlAdapt.queryAllTableName(dataBase.getDbType(),dataBase.getDataBaseName());
 		
-		return null;
+		return result.toJSONString(0, "" , list);
 	}
 	
 	/**
