@@ -28,6 +28,7 @@
 	};
 	
 	function query(url, qo, curr_config, callback){
+		_log("translate");
 		$.ajaxjson.post({url : url,
 	        queryPara : qo,   
 			successFunc: function(data){

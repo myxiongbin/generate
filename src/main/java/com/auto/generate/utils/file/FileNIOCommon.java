@@ -137,6 +137,7 @@ public class FileNIOCommon {
 		writeByteToFile(path,content.getBytes(),isCoverage);
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void clean(final Object buffer) throws Exception {
 		AccessController.doPrivileged(new PrivilegedAction() {
 			public Object run() {

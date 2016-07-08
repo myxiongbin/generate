@@ -333,14 +333,14 @@
 				formJsonData.tableNameList = '';
 				gdataBaseMap = formJsonData;
 				
-				_log("11:" + JSON.stringify(formJsonData));
+				_log("选择库表:" + JSON.stringify(formJsonData));
 				
 				$('#dbConfigForm\\:tableNameList').combogrid({ 
 					url: QUERY_ALL_TABLE,
 					queryParams: formJsonData,
 					useAjaxjson: true,
-					useAjaxjson_total_attrName: 'content',// 必填返回数据组装
-					useAjaxjson_rows_attrName: 'content',// 必填返回数据组装
+					useAjaxjson_total_attrName: 'data',// 必填返回数据组装
+					useAjaxjson_rows_attrName: 'data',// 必填返回数据组装
 					useAjaxjson_loadOverFunc:function(data){
 						
 					},

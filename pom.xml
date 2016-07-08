@@ -274,10 +274,10 @@
 			<classifier>jdk15</classifier>
 		</dependency>
 		<dependency>
-	      <groupId>flexjson</groupId>
-	      <artifactId>flexjson</artifactId>
-	      <version>3.1</version>
-	    </dependency>
+    		<groupId>net.sf.flexjson</groupId>
+    		<artifactId>flexjson</artifactId>
+    		<version>3.1</version>
+		</dependency>
 	    <dependency>  
                <groupId>com.fasterxml.jackson.core</groupId>  
                <artifactId>jackson-core</artifactId>  
@@ -326,6 +326,11 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-pool</groupId>
+		    <artifactId>commons-pool</artifactId>
+		    <version>1.6</version>
 		</dependency>
 		<!-- spring test -->
 		<dependency>
@@ -389,12 +394,6 @@
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1-hudson-3</version>
 		</dependency>
-		<!-- metaq -->
-		<dependency> 
-		  <groupId>com.jzwgj</groupId>
-		  <artifactId>metaqwgj</artifactId>
-		  <version>1.0.20</version>
-		</dependency>
 		<dependency>
 			<groupId>com.github.sgroschupf</groupId>
 			<artifactId>zkclient</artifactId>
@@ -418,17 +417,11 @@
 		  <version>2.2</version>
 		</dependency>
 		<!--生成二维码 结束  -->
-		<dependency>
-			<groupId>jhb</groupId>
-			<artifactId>jhb</artifactId>
-			<version>1.1.1</version>
-		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
 			<id>nexus</id>
-			<name>jznexus</name>
-			<url>http://192.168.1.123:8081/nexus/content/groups/public/</url>
+			<url>http://192.168.1.126:8081/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
 	<build>

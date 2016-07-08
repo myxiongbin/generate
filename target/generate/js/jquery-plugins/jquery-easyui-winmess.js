@@ -1,12 +1,4 @@
-﻿﻿/**
- * jQuery EasyUI 1.2.4
- * 
- * Licensed under the GPL terms To use it on other terms please contact us
- * 
- * Copyright(c) 2009-2011 stworthy [ stworthy@gmail.com ]
- * 
- */
-(function($) {
+﻿(function($) {
 	function _1(el, _2, _3, _4) {
 		var _5 = $(el).winp("winp");
 		if (!_5) {

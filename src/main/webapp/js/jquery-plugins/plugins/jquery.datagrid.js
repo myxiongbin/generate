@@ -1413,6 +1413,7 @@
 			_136();
 		}, 0);
 		function _136() {
+			_log("ajax---------type:" + opts.method + ",url:" + opts.url + ",data:" + _135);
 			$.ajax( {
 				type : opts.method,
 				url : opts.url,

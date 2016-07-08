@@ -118,10 +118,10 @@ public class DataBase implements Serializable{
 	
 	public static DataBase getMaySql(String prjName){
 		DataBase dataBase = new DataBase();
-		dataBase.setUrl("192.168.25.188:3306");
+		dataBase.setUrl("rdsw49x2tpph3bfc8ldvo.mysql.rds.aliyuncs.com");
 		dataBase.setDriver("com.mysql.jdbc.Driver");
-		dataBase.setUsername("root");
-		dataBase.setPassword("mysql");
+		dataBase.setUsername("ykf");
+		dataBase.setPassword("Dabay2016");
 		dataBase.setTableNameList("");
 		dataBase.setPrjName(prjName);
 		dataBase.setBasepackage("com.system");
@@ -129,7 +129,7 @@ public class DataBase implements Serializable{
 		dataBase.setOutRootOverride("d:\\generator-output");
 		dataBase.setWriteTableToLocal(false);
 		dataBase.setDbType("mysql");
-		dataBase.setDataBaseName("caitu99");
+		dataBase.setDataBaseName("ykf_dev");
 		return dataBase;
 	}
 	
@@ -149,4 +149,24 @@ public class DataBase implements Serializable{
 		dataBase.setDataBaseName("oracle");
 		return dataBase;
 	}
+	
+	@Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("DataBase[url=").append(url)
+				.append(",driver=").append(driver)
+				.append(",username=").append(username)
+				.append(",password=").append(password)
+				.append(",tableNameList=").append(tableNameList)
+				.append(",prjName=").append(prjName)
+				.append(",basepackage=").append(basepackage)
+				.append(",namespace=").append(namespace)
+				.append(",outRootOverride=").append(outRootOverride)
+				.append(",writeTableToLocal=").append(writeTableToLocal)
+				.append(",dbType=").append(dbType)
+				.append(",dataBaseName=").append(dataBaseName)
+				.append("]");
+        
+        return builder.toString();
+    }
 }

@@ -360,6 +360,7 @@
 		
 	};
 	function query(url,para, callback){
+		_log("comp");
 		$.ajaxjson.post({url : url,
 	        queryPara : para,   
 			successFunc: function(data){

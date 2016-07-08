@@ -54,10 +54,12 @@
 					title:'数据库配置',
 					content:'<iframe id="dbConfigIframe" src="/web/db_config.html" width="100%" height="100%" frameborder="0" ></iframe>'
 				});
+				/*
 				$('#work').tabs('add',{
 					title:'快速生成',
 					content:'<iframe id="quickBuildIframe" src="/web/quick_build.html" width="100%" height="100%" frameborder="0" ></iframe>'
 				});
+				*/
 
 				$('#work').tabs('select',"数据库配置");
 				setTimeout(function(){
@@ -68,6 +70,7 @@
 			//读取配置文件信息
 			function readConfig(name){
 				_log("读取配置文件信息:{name:{}}",name);
+				
 				$.ajax({ type: "POST",//请求方式，get或post
  					url: READ_CONFIG,
 					data: {"name":name},

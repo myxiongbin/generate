@@ -12,9 +12,10 @@
 				}
 				jQuery.ajax( {     
 		            type : para.type,     
-		            contentType : para.contentType,     
+		            //contentType : para.contentType,     
 		            url : para.url,
-		            data : queryPara,
+		            //data : queryPara,
+		            data : para.queryPara,
 		            async : para.async, 
 		            dataType : para.dataType, 
 		            success : function(data) {

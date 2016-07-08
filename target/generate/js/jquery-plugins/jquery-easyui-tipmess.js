@@ -26,6 +26,7 @@
 	
 	// 远程查询
 	function query(url, para, callback) {
+		_log("tipmess");
 		$.ajaxjson.post({
 			url: url,
 	        queryPara: para,
